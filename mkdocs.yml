@@ -1,0 +1,85 @@
+site_name: roy7w · 技术博客
+site_description: 个人技术博客、知识库与求职作品集
+site_author: roy wang
+site_url: https://roy7w.github.io/
+repo_url: https://github.com/roy7w/roy7w.github.io
+repo_name: roy7w/roy7w.github.io
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - content.action.edit
+    - search.highlight
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+
+nav:
+  - 首页: index.md
+  - Learning Roadmaps:
+      - AI Agent 求职增强版: ai-agent/index.md
+      - "Stage 0 · LLM & Agent 全局认知": ai-agent/stage-00.md
+      - "Stage 1 · Minimal Agent Loop": ai-agent/stage-01.md
+      - "Stage 2 · Tool / RAG / Memory": ai-agent/stage-02.md
+      - "Stage 3 · Harness / LangGraph / Backend": ai-agent/stage-03.md
+      - "Stage 4 · Skills / MCP": ai-agent/stage-04.md
+      - "Stage 5 · Multi-Agent": ai-agent/stage-05.md
+      - "Stage 6 · SFT / LoRA / QLoRA": ai-agent/stage-06.md
+      - "Stage 7 · Eval / Observability / Safety": ai-agent/stage-07.md
+      - "Stage 8 · Inference / vLLM / Infra": ai-agent/stage-08.md
+      - "Stage 9 · Browser / Computer Use": ai-agent/stage-09.md
+      - "Stage 10 · Production Project": ai-agent/stage-10.md
+  - 研究与技术:
+      - Accelerator Control: accelerator/index.md
+      - Robotics: robotics/index.md
+      - Coding: coding/index.md
+  - Projects: projects/index.md
+  - Notes: notes/index.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/roy7w
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+copyright: Copyright &copy; 2026 roy wang
