@@ -83,5 +83,7 @@ extra:
 extra_css:
   - assets/stylesheets/extra.css
 
-copyright: Copyright &copy; 2026 roy wang
+extra_javascript:
+  - assets/javascripts/progress.js
 
+copyright: Copyright &copy; 2026 roy wang

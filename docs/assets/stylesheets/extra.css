@@ -12,6 +12,101 @@
   border-radius: 0.25rem;
 }
 
+.md-typeset .task-list-item {
+  position: relative;
+  margin: 0.4rem 0;
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+.md-typeset .task-list-control,
+.md-typeset .task-list-indicator {
+  cursor: pointer;
+}
+
+.md-typeset .task-list-indicator::before {
+  border: 1.5px solid color-mix(in srgb, var(--md-default-fg-color) 35%, transparent);
+  background-color: color-mix(in srgb, var(--md-default-bg-color) 92%, var(--md-primary-fg-color));
+  transition: background-color 160ms ease, border-color 160ms ease, transform 120ms ease;
+}
+
+.md-typeset .task-list-control:hover .task-list-indicator::before {
+  border-color: var(--md-accent-fg-color);
+  transform: scale(1.06);
+}
+
+.md-typeset .task-list-control input:focus-visible + .task-list-indicator::before {
+  outline: 3px solid color-mix(in srgb, var(--md-accent-fg-color) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.md-typeset .task-list-control input:checked + .task-list-indicator::before {
+  border-color: #2fbf71;
+  background-color: #2fbf71;
+}
+
+.md-typeset .task-list-item.is-complete {
+  color: color-mix(in srgb, var(--md-default-fg-color) 52%, transparent);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.roadmap-progress-panel {
+  margin: 1rem 0 1.6rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 22%, transparent);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--md-default-bg-color) 94%, var(--md-primary-fg-color));
+  box-shadow: 0 0.2rem 0.8rem color-mix(in srgb, #000 8%, transparent);
+}
+
+.roadmap-progress-row + .roadmap-progress-row {
+  margin-top: 0.9rem;
+}
+
+.roadmap-progress-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.roadmap-progress-label {
+  font-weight: 650;
+}
+
+.roadmap-progress-value {
+  color: color-mix(in srgb, var(--md-default-fg-color) 70%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+
+.roadmap-progress-value strong {
+  color: var(--md-default-fg-color);
+  font-size: 0.86rem;
+}
+
+.roadmap-progress-track {
+  height: 0.42rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--md-default-fg-color) 9%, transparent);
+}
+
+.roadmap-progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #29b6f6, var(--md-accent-fg-color));
+  transition: width 240ms ease;
+}
+
+.roadmap-progress-note {
+  margin: 0.65rem 0 0;
+  color: color-mix(in srgb, var(--md-default-fg-color) 58%, transparent);
+  font-size: 0.68rem;
+}
+
 .hero {
   padding: 1.5rem;
   margin: 0 0 1.5rem;
