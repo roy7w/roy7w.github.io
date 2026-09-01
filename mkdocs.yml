@@ -4,6 +4,7 @@ site_author: roy wang
 site_url: https://roy7w.github.io/
 repo_url: https://github.com/roy7w/roy7w.github.io
 repo_name: roy7w/roy7w.github.io
+edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -83,3 +84,4 @@ extra_css:
   - assets/stylesheets/extra.css
 
 copyright: Copyright &copy; 2026 roy wang
+
