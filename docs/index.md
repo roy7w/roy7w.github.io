@@ -1,41 +1,38 @@
-# Hi, I'm roy wang 👋
+# AI Agent 学习博客
 
 <div class="hero" markdown>
 
-这里是我的个人技术博客、知识库与求职作品集。我会把学习过程沉淀成可复现的项目、技术笔记和阶段性复盘，而不只是收藏链接。
+这里专注记录 AI Agent 的学习、实现与工程化过程：从手写最小 Agent Loop 开始，逐步加入 Tool、RAG、Memory、Harness、Skills、MCP、Multi-Agent、评测、推理部署和 Computer Use，最终形成可以复现和展示的生产级项目。
 
-[开始 AI Agent 路线](ai-agent/index.md){ .md-button .md-button--primary }
-[浏览 Projects](projects/index.md){ .md-button }
+[开始 Stage 0–10 路线](ai-agent/index.md){ .md-button .md-button--primary }
+[查看项目实践方式](projects/index.md){ .md-button }
 
 </div>
 
-## 研究与技术方向
+## 学习路线
 
-- **Accelerator Control**：EPICS、EtherCAT、实验控制、飞扫与设备自动化。
-- **Robotics**：机械臂、运动控制、感知与具身智能。
-- **AI Agent / LLM Application**：Agent Loop、RAG、MCP、评测与生产化。
-- **Software Engineering**：Python、C++、Linux、后端、容器化与工程质量。
+路线共分为 Stage 0–10，每项 checkbox 都对应可以解释、实现或验证的能力，而不只是“看过某篇资料”。
 
-## Learning Roadmaps
+- **Stage 0–2：核心原理**——理解 Agent，手写循环，掌握 Tool、RAG 与 Memory。
+- **Stage 3–5：系统能力**——构建 Harness、后端、Skills、MCP 与 Multi-Agent。
+- **Stage 6–9：模型与工程侧翼**——微调、评测、推理 Infra、Browser / Computer Use。
+- **Stage 10：生产交付**——完成可评测、可部署、可复现的综合项目。
 
-### AI Agent 求职增强版
+[进入学习路线 →](ai-agent/index.md)
 
-从 LLM 与 Agent 基础出发，经过 Tool/RAG/Memory、Agent Harness、Skills/MCP、Multi-Agent、微调、评测、推理部署和 Computer Use，最终交付一个可展示、可评测、可部署的生产级项目。
+## 项目驱动
 
-[查看 Stage 0–10 Todo List →](ai-agent/index.md)
+学习采用“一个长期主项目 + 少量阶段微项目”的方式：
 
-## Projects
+1. 每个阶段先用最小实验理解新能力。
+2. 能力验证后，再接入长期主项目。
+3. 用 tag、测试、trace 和阶段复盘记录项目如何演化。
+4. 与主项目关系不大的专项能力，保留为独立的小型实验。
 
-项目页用于记录问题背景、系统设计、关键取舍、指标、演示和复盘。重点展示“为什么这样做”和“结果是否可信”。
+[查看项目演化方案 →](projects/index.md)
 
-[查看项目作品集 →](projects/index.md)
+!!! tip "完成标准"
+    每完成一个 Stage，都应留下可以运行的代码、测试或评测证据。用“做出来并验证过”代替“看过和听懂了”。
 
-## Notes
-
-- [Accelerator Control](accelerator/index.md)
-- [Robotics](robotics/index.md)
-- [Coding](coding/index.md)
-- [随手笔记与阅读记录](notes/index.md)
-
-!!! tip "维护原则"
-    每完成一个 Stage，至少留下一个可运行仓库、一份可复现说明或一组评测结果。用证据更新履历，不用“学过”代替“做过”。
+!!! note "进度保存"
+    checkbox 状态保存在当前浏览器的 localStorage 中；同一浏览器刷新后仍会保留，但暂不跨设备同步。
