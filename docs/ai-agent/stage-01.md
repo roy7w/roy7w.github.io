@@ -4,6 +4,12 @@
 
 不依赖高级 Agent 框架，从零实现一个可观察、可限制、可恢复的最小 Agent Loop，真正理解模型如何选择并调用工具。
 
+## 与长期项目的关系
+
+本阶段采用“微项目与主项目合一”的方式：先把 Calculator Agent 等最小实验组合成一个约 100–300 行的 Minimal Agent，再将它作为 Research Agent 主项目的第一版内核。完成后打 `stage-1` tag；Stage 2 不重写项目，而是在这份代码上加入 RAG、Memory 和更真实的研究工具。
+
+[查看完整项目演化方案](../projects/index.md)
+
 ## Todo
 
 ### LLM API
@@ -67,7 +73,7 @@ User → LLM → Tool Selection → Tool Execution
   └──────── Final Answer ← Observation
 ```
 
-仓库包含代码、测试、示例 trace、架构图和 README。示例任务应能读取本地数据、计算统计量并总结结果。
+仓库包含代码、测试、示例 trace、架构图和 README。示例任务应能读取本地数据、计算统计量并总结结果。这个产出同时作为长期 Research Agent 的 `stage-1` 版本。
 
 ## 暂不深入
 
