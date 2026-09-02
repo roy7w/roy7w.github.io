@@ -1,5 +1,5 @@
-site_name: roy7w · 技术博客
-site_description: 个人技术博客、知识库与求职作品集
+site_name: roy7w · AI Agent 学习博客
+site_description: 面向 AI Agent 求职与工程实践的 Stage 0–10 学习路线
 site_author: roy wang
 site_url: https://roy7w.github.io/
 repo_url: https://github.com/roy7w/roy7w.github.io
@@ -36,8 +36,8 @@ theme:
 
 nav:
   - 首页: index.md
-  - Learning Roadmaps:
-      - AI Agent 求职增强版: ai-agent/index.md
+  - AI Agent 学习路线:
+      - 路线总览: ai-agent/index.md
       - "Stage 0 · LLM & Agent 全局认知": ai-agent/stage-00.md
       - "Stage 1 · Minimal Agent Loop": ai-agent/stage-01.md
       - "Stage 2 · Tool / RAG / Memory": ai-agent/stage-02.md
@@ -49,12 +49,7 @@ nav:
       - "Stage 8 · Inference / vLLM / Infra": ai-agent/stage-08.md
       - "Stage 9 · Browser / Computer Use": ai-agent/stage-09.md
       - "Stage 10 · Production Project": ai-agent/stage-10.md
-  - 研究与技术:
-      - Accelerator Control: accelerator/index.md
-      - Robotics: robotics/index.md
-      - Coding: coding/index.md
-  - Projects: projects/index.md
-  - Notes: notes/index.md
+  - Agent 项目实践: projects/index.md
 
 markdown_extensions:
   - admonition
