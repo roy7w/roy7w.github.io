@@ -1,84 +1,57 @@
-# Stage 2 · Tool / RAG / Memory
+# Stage 2 · ROS2 / MoveIt2 / UR7e 控制基础
 
-## 目标
+## 目标与项目增量
 
-围绕 UR7e 具身 Agent 推进本阶段能力。
+先打通独立于 LLM 的真机控制链路，交付 **v0.2**。参考 DeepSeek 的“先让代码稳定控制机器人”安排，预留约 1–2 周作初始时间盒；是否通过以验收证据为准。
 
-让 Agent 能可靠使用外部知识和更丰富的工具，并建立 Context、Retrieval 与 Memory 的清晰边界。
+## 步骤 1 · ROS2 基础 → 最小控制工作区
 
-## Todo
+- [ ] 理解 Node / Topic / Service / Action 的职责与使用场景。 <span data-task-id="s02-t000"></span>
+- [ ] 创建 Workspace / Package，能构建、source 环境并启动节点。 <span data-task-id="s02-t001"></span>
+- [ ] 用 Topic 观察状态，用 Service 请求短操作，用 Action 跟踪长时间运动与取消。 <span data-task-id="s02-t002"></span>
+- [ ] 编写 Python 节点，输出 Joint State、时间戳、连接状态与错误。 <span data-task-id="s02-t003"></span>
 
-### RAG 基础
+项目同步：建立 robot/ 适配层；先用 fake hardware 或仿真检查通信，随后在实验室条件满足后接真机。
 
-- [ ] 解释 RAG 为什么出现，以及它不能解决什么。
-- [ ] 区分 RAG、Fine-tuning 与 Agent。
-- [ ] 读取 PDF、Markdown 与 TXT，并保留来源元数据。
-- [ ] 实现 document chunking，比较 chunk size 与 overlap。
-- [ ] 理解 embedding 与 cosine similarity。
-- [ ] 使用 FAISS 或 Chroma 中的一个建立向量索引。
-- [ ] 实现 Top-K retrieval 并把证据加入上下文。
-- [ ] 让回答提供可点击或可定位的 citation。
-- [ ] 当证据不足时拒绝编造答案。
+## 步骤 2 · UR7e 连接 → 可验证的设备状态
 
-### 检索增强
+- [ ] 记录 UR7e 型号、PolyScope 版本、控制器与网络配置。 <span data-task-id="s02-t004"></span>
+- [ ] 对照官方支持表选择 Ubuntu / ROS2 / Universal Robots ROS2 Driver 组合，固定版本。 <span data-task-id="s02-t005"></span>
+- [ ] 按所用 driver 的官方指南完成机器人端配置、网络连通与连接检查。 <span data-task-id="s02-t006"></span>
+- [ ] 在 RViz 查看机器人模型与 Joint State，核对实际姿态、坐标系和单位。 <span data-task-id="s02-t007"></span>
+- [ ] 检查末端工具、payload、TCP 与标定参数，保存实验室设置记录。 <span data-task-id="s02-t008"></span>
 
-- [ ] 区分 Dense Retrieval 与 BM25 / Sparse Retrieval。
-- [ ] 知道 Hybrid Search 的适用场景。
-- [ ] 理解 reranker 在召回之后解决什么问题。
-- [ ] 用 Recall@K 或命中率评估检索。
-- [ ] 建立一组包含同义表达、长问题和无答案问题的检索测试集。
-- [ ] 区分“没有检索到”“证据有歧义”和“模型不会回答”。
+项目同步：提交连接 SOP 和状态截图，不能只凭“驱动进程启动”认定机器人可执行。
 
-### Tool Engineering
+## 步骤 3 · MoveIt2 → 确定性运动
 
-- [ ] 把文件读取、Web 搜索、数据库查询、代码执行和 RAG 检索设计成独立工具。
-- [ ] 为工具定义严格输入输出 schema。
-- [ ] 处理空结果、分页、超时、异常和重复调用。
-- [ ] 把外部内容标记为不可信数据，避免把网页文本当系统指令。
-- [ ] 对写操作、代码执行和网络访问设置最小权限。
-- [ ] 记录工具成功率、延迟与失败类型。
+- [ ] 理解 Planning Scene、Joint space、Cartesian path、Collision 与 End Effector。 <span data-task-id="s02-t009"></span>
+- [ ] 配置桌面、障碍物、夹爪及工作空间边界，核对碰撞模型。 <span data-task-id="s02-t010"></span>
+- [ ] 完成 Joint motion 与 Cartesian motion 的规划和执行，检查返回结果与轨迹覆盖情况。 <span data-task-id="s02-t011"></span>
+- [ ] 用 Python / ROS2 封装 Home、Waypoint A、Waypoint B 命名目标。 <span data-task-id="s02-t012"></span>
+- [ ] 验证规划失败、目标不可达、连接中断、取消与软件停止的处理。 <span data-task-id="s02-t013"></span>
 
-### Memory
+项目同步：以低速、受监督方式执行 Home → Waypoint A → Waypoint B → Home；LLM 不参与这一链路。
 
-- [ ] 区分 Context 与 Memory。
-- [ ] 区分 short-term、session 与 long-term memory。
-- [ ] 设计哪些信息允许写入长期记忆，哪些禁止写入。
-- [ ] 在上下文变长时生成可追溯摘要。
-- [ ] 为记忆加入用户/会话隔离和删除机制。
-- [ ] 验证旧记忆、错误记忆和冲突记忆对结果的影响。
-- [ ] 理解“把所有历史全塞回上下文”为何不可扩展。
+## 步骤 4 · 安全分层 → 真机准入
 
-## 阶段产出
+```text
+LLM → Task/Skill → Safety Layer → MoveIt2 → Robot Controller → UR7e
+                      ↑ 人工审批 / 限位 / 状态检查
+实体急停与设备安全功能：独立于 LLM、网络和应用层运行
+```
 
-完成 UR7e 手册 RAG + 模拟控制 Tool 的 V1：Documents → Chunk → Embed → Retrieve → Agent → Citation，并连接状态查询、故障码查询与动作工具。提交 20–30 个问题的检索与回答评测表，包含引用正确性、无答案处理和失败原因。
+- [ ] 在应用外配置并核验 joint / workspace / velocity / acceleration limits 与设备安全功能。 <span data-task-id="s02-t014"></span>
+- [ ] 确认真机周边净空、操作者、实体急停位置、恢复流程和实验室 SOP。 <span data-task-id="s02-t015"></span>
+- [ ] 验证人工审批、取消、异常停机与断连后禁止自动续动。 <span data-task-id="s02-t016"></span>
 
-## 暂不深入
+## 产出与完成判据 · v0.2
 
-- GraphRAG、HyDE、ColBERT 与多跳检索优化
-- 十种向量数据库横向比较
-- 大规模分布式索引和在线特征平台
-- 让模型自由写入永久记忆
+- [ ] 保存版本清单、启动命令、配置、控制脚本与真实执行日志。 <span data-task-id="s02-t017"></span>
+- [ ] 连续至少 5 次稳定执行 Home → A → B → Home，逐次记录规划和执行结果。 <span data-task-id="s02-t018"></span>
+- [ ] 故障时不继续后续 waypoint，必须确认状态与重新准入。 <span data-task-id="s02-t019"></span>
 
-## 学习完成判据
-
-- [ ] 任何事实性回答都能回到具体文档片段。
-- [ ] 能分别测量 retrieval quality 与 answer quality。
-- [ ] 对无答案问题不会伪造 citation。
-- [ ] 能解释每类 Memory 的生命周期、权限和清理方式。
-- [ ] 项目可由 README 中的步骤从零复现。
-
-## 长期项目演进 · V1 · 机械臂手册 RAG + 控制 Tool
-
-当前必做：在 V0 上接入 UR7e/机器人手册知识库、动作/状态工具、故障码查询和任务上下文。先用模拟控制；文档内容作为证据，不直接授权动作。
-
-### 当前必做（旁支阶段在独立实验中完成）
-
-- [ ] 保存手册型号、版本、章节/页码元数据，让知识回答带可定位引用，未知故障码不编造。
-- [ ] 打通手册检索、故障码查询、当前状态和模拟动作工具；区分会话任务上下文与实时机器人状态。
-
-### 阶段产出 / 完成判据
-
-交付 V1 及 20–30 个问题的评测表，覆盖引用正确性、无答案和状态冲突。
+只有仿真条件时可完成仿真里程碑，报告中明确“真机待验证”，不能把仿真成功写成真机完成。
 
 
-[← Stage 1](stage-01.md) · [下一阶段：Harness / LangGraph / Backend →](stage-03.md)
+[← Stage 1](stage-01.md) · [路线总览](index.md) · [Stage 3 →](stage-03.md)

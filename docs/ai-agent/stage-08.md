@@ -1,92 +1,57 @@
-# Stage 8 · Inference + vLLM + Infra Basics
+# Stage 8 · Inference / AI Infra / Edge Deployment
 
-## 目标
+## 目标与项目增量
 
-围绕 UR7e 具身 Agent 推进本阶段能力。
+把 AI Infra 作为主项目性能增强，交付 **v2.5**。Stage 7 跳过时，本阶段仍可完成 LLM 决策服务；无需先学 K8s、复杂集群调度或分布式训练。
 
-理解 LLM 推理的资源与性能约束，使用 vLLM 部署一个兼容 API 的模型服务，并能用数据解释吞吐、延迟、显存、质量和成本之间的取舍。
+## 步骤 1 · 推理原理 → 拆分延迟来源
 
-## Todo
+- [ ] 理解 prefill / decode / KV cache / batch / continuous batching。 <span data-task-id="s08-t000"></span>
+- [ ] 理解 TTFT / TPOT / throughput / latency，并区分服务耗时与机器人执行耗时。 <span data-task-id="s08-t001"></span>
+- [ ] 理解 FP32 / FP16 / BF16 / INT8 / INT4 的精度、显存和性能权衡。 <span data-task-id="s08-t002"></span>
+- [ ] 测量现有远程 API 基线：输入输出长度、并发、token、延迟和任务结果。 <span data-task-id="s08-t003"></span>
 
-### 推理基础
+项目同步：先查清瓶颈是 LLM、检索、通信、规划还是机械动作，不把机器人耗时算作模型推理优化收益。
 
-- [ ] 区分 prefill 与 decode 阶段。
-- [ ] 理解 TTFT、TPOT、end-to-end latency 与 throughput。
-- [ ] 理解 KV cache 为什么占用显存。
-- [ ] 理解 context length、batch size 与并发的关系。
-- [ ] 区分模型权重精度、KV cache 精度与计算精度。
-- [ ] 理解量化带来的显存、速度与质量取舍。
-- [ ] 知道 continuous batching 与 paged attention 的作用。
-- [ ] 理解 streaming、stop、sampling 和 chat template。
+## 步骤 2 · vLLM 服务 → 替换决策后端
 
-### vLLM 实践
+- [ ] 选择硬件支持的模型与精度，固定模型、vLLM 和 GPU 软件版本。 <span data-task-id="s08-t004"></span>
+- [ ] 启动 vLLM OpenAI-compatible API，用 Docker 记录可复现配置。 <span data-task-id="s08-t005"></span>
+- [ ] 接入现有 Agent Planner，验证 messages、structured output 与 tool calling 的实际兼容性。 <span data-task-id="s08-t006"></span>
+- [ ] 用 GPU monitoring 记录显存、利用率与错误，设置服务 timeout 与并发限制。 <span data-task-id="s08-t007"></span>
+- [ ] 对比远程 API 与本地模型的正确率、工具格式、安全拒绝率与资源成本。 <span data-task-id="s08-t008"></span>
 
-- [ ] 安装并启动一个 vLLM OpenAI-compatible server。
-- [ ] 正确加载 tokenizer、chat template 与模型权重。
-- [ ] 调用 chat / completion API 并流式输出。
-- [ ] 设置最大上下文、显存利用率与并发限制。
-- [ ] 运行单请求与多并发 benchmark。
-- [ ] 观察 OOM、排队、超时和取消行为。
-- [ ] 部署 Stage 6 的 adapter 或合并模型。
-- [ ] 为服务加入 health check、日志与基本指标。
+## 步骤 3 · Benchmark → 可解释的优化
 
-### Infra Basics
+- [ ] 固定任务、prompt、输出长度、硬件与并发，区分冷启动和预热结果。 <span data-task-id="s08-t009"></span>
+- [ ] 比较 batch、精度或量化配置，报告 TTFT、TPOT、吞吐、P50/P95 latency 与显存。 <span data-task-id="s08-t010"></span>
+- [ ] 复用 Stage 6 任务集，确认优化没有破坏任务质量与安全门。 <span data-task-id="s08-t011"></span>
+- [ ] 给出瓶颈、收益、质量损失和默认部署配置；效果不好也保留负结果。 <span data-task-id="s08-t012"></span>
 
-- [ ] 理解 GPU memory、compute、memory bandwidth 的基本关系。
-- [ ] 能使用系统工具观察 GPU 利用率、显存和功耗。
-- [ ] 理解 tensor parallel、pipeline parallel 与 data parallel 的用途。
-- [ ] 知道模型加载、冷启动与权重缓存的成本。
-- [ ] 使用 Docker 固化运行环境。
-- [ ] 理解 API gateway、鉴权、rate limit 和 autoscaling 的位置。
-- [ ] 估算一次请求的 token 成本和服务容量。
-- [ ] 为模型不可用设计超时、fallback 与降级。
+## 步骤 4 · VLA / Edge（仅 Stage 7 完成后按需做）
 
-### 性能实验
+- [ ] 评估 VLA 导出到 ONNX Runtime / TensorRT 的算子、形状和模型兼容性。 <span data-task-id="s08-t013"></span>
+- [ ] 比较原始与优化后策略的数值误差、quantization 效果和任务成功率。 <span data-task-id="s08-t014"></span>
+- [ ] 有 Jetson 时验证 edge inference 的功耗、内存、热稳定性与控制频率。 <span data-task-id="s08-t015"></span>
+- [ ] 检查延迟超限、策略异常与连接丢失时的停止和回退行为。 <span data-task-id="s08-t016"></span>
 
-- [ ] 固定模型、硬件、数据集与推理参数。
-- [ ] 比较不同并发、上下文长度与输出长度。
-- [ ] 比较至少一种量化与未量化结果。
-- [ ] 同时报告 P50/P95、TTFT、tokens/s、显存与质量变化。
-- [ ] 避免只报告峰值吞吐而忽略尾延迟。
-
-## 阶段产出
-
-提交一套可复现的本地模型服务与 benchmark 报告：
+## 最终架构
 
 ```text
-Client → API Gateway → vLLM → Model / Adapter
-                    ↘ Metrics / Logs
+Local LLM/VLM（按服务实际支持选择） → vLLM → Agent Planner → MCP/Skills
+                                                             ↓
+                                                  Safety / Motion Approval
+                                                             ↓
+                                                  ROS2/MoveIt2 或 VLA → UR7e
 ```
 
-报告说明硬件、模型、参数、负载、性能曲线、成本估算、瓶颈与推荐配置。
+VLA 策略按模型支持使用独立推理运行时，不能假设所有 VLA 都能交给 vLLM 执行动作推理。
 
-## 暂不深入
+## 产出与完成判据 · v2.5
 
-- CUDA Kernel、Triton 与 FlashAttention 实现
-- TensorRT-LLM / SGLang 的全面横向比较
-- 大规模 Kubernetes 与多地域调度
-- 分布式训练、RDMA 与 NCCL 调优
-
-## 学习完成判据
-
-- [ ] 另一个人可以用 README 启动兼容 API 的推理服务。
-- [ ] 能解释一次请求的 prefill、decode 与 KV cache 开销。
-- [ ] benchmark 可重复，并同时报告延迟、吞吐、显存和质量。
-- [ ] 面对 OOM 或高尾延迟，能提出有依据的调参顺序。
-- [ ] Agent 可切换远程 API 与本地 vLLM，而不改核心业务逻辑。
-
-## 长期项目演进 · V5 · 决策模型部署 / AI Infra
-
-当前必做：AI Infra 是第二技能栈。在本地或服务器部署 LLM 决策模块，保持机器人工具与安全边界独立；硬件不足时使用可用服务器并如实记录环境。
-
-### 当前必做（旁支阶段在独立实验中完成）
-
-- [ ] 让主项目通过统一接口切换 API 模型与本地/服务器 vLLM，在同一任务集比较延迟、成本、工具调用质量与任务成功率。
-- [ ] 记录 TTFT、throughput、KV cache/显存、并发和量化取舍；模型不可用时停止新动作或安全降级。
-
-### 阶段产出 / 完成判据
-
-交付 V5、部署说明和 benchmark。Stage 6 adapter 部署可作为独立实验，不是主项目依赖。高级可选：ONNX Runtime / TensorRT / Jetson，用于视觉模型或小模型边缘推理，第一轮不要求完成。
+- [ ] 发布部署配置、benchmark 脚本、硬件清单、性能表和质量回归结果。 <span data-task-id="s08-t017"></span>
+- [ ] 相同任务可以切换决策后端，安全边界与审批行为一致。 <span data-task-id="s08-t018"></span>
+- [ ] 明确实测收益与局限；未做 VLA / Jetson 时标记可选未完成，不影响 LLM 部署验收。 <span data-task-id="s08-t019"></span>
 
 
-[← Stage 7](stage-07.md) · [下一阶段：Browser / Computer Use →](stage-09.md)
+[← Stage 7](stage-07.md) · [路线总览](index.md) · [Stage 9 →](stage-09.md)

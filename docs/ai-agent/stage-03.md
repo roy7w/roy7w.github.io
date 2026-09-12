@@ -1,89 +1,46 @@
-# Stage 3 · Agent Harness + LangGraph + Backend
+# Stage 3 · Robot Tools + RAG + Memory
 
-## 目标
+## 目标与项目增量
 
-围绕 UR7e 具身 Agent 推进本阶段能力。
+把 Agent-Learning-Hub 的 Tool / RAG / Memory 知识落在同一套机器人接口和资料上，交付 **v0.3**。沿用 v0.2 的控制程序，不另做通用 RAG Agent。
 
-理解现代 Agent Harness 如何管理状态、工具、上下文、权限和追踪；选一个主框架把前两阶段的 demo 升级成可维护的后端服务。
+## 步骤 1 · Robot Tools → 受约束接口
 
-## Todo
+- [ ] 封装 get_robot_state / go_home / move_to_pose / execute_waypoints / open_gripper / close_gripper / emergency_stop。 <span data-task-id="s03-t000"></span>
+- [ ] 为每个工具定义 schema、单位、坐标系、前置条件、timeout、error code 和结果状态。 <span data-task-id="s03-t001"></span>
+- [ ] 在确定性 Safety Layer 校验 workspace / joint / velocity limits，拒绝不可达或越界目标。 <span data-task-id="s03-t002"></span>
+- [ ] 将 move_to_pose / execute_waypoints 的模型输入限制为批准的目标或路线 ID，具体轨迹由代码与 MoveIt2 生成。 <span data-task-id="s03-t003"></span>
+- [ ] 将执行前后 robot state、MoveIt2 result 与错误码写入结构化 observation。 <span data-task-id="s03-t004"></span>
+- [ ] 验证重复请求、超时、部分执行和断连，禁止未知状态下自动重发运动。 <span data-task-id="s03-t005"></span>
 
-### Agent Harness
+项目同步：实现 Mock / ROS2 两个适配器共享的接口契约。名为 emergency_stop 的软件接口只能请求停止，不能替代独立硬件急停；在文档中明确语义与失效条件。
 
-- [ ] 能解释 Harness 与 Stage 1 裸 while-loop 的区别。
-- [ ] 在一个真实 Agent 项目中找到 Agent Loop 与 Tool Registry。
-- [ ] 找到 Session Store 与 Context Management。
-- [ ] 找到 Permission Gate、Retry、Trace 与 Logging。
-- [ ] 观察并解释一次完整 execution trace。
-- [ ] 理解 checkpoint、resume、interrupt 与 human approval。
-- [ ] 理解模型、工具、存储和运行时之间的接口边界。
+## 步骤 2 · RAG → 有出处的机器人知识
 
-### LangGraph
+- [ ] 收集 UR7e manual、ROS2 driver docs、MoveIt2 docs、实验室 SOP、安全规范和接口文档。 <span data-task-id="s03-t006"></span>
+- [ ] 给资料记录版本、来源、页码或章节、适用设备与更新时间。 <span data-task-id="s03-t007"></span>
+- [ ] 学习 chunking，并比较按章节与固定长度切分对故障码和 SOP 检索的影响。 <span data-task-id="s03-t008"></span>
+- [ ] 学习 embedding / vector search / top-k，建立最小索引与检索 API。 <span data-task-id="s03-t009"></span>
+- [ ] 按错误案例评估 reranker 是否改善检索，保留无需它的基线。 <span data-task-id="s03-t010"></span>
+- [ ] 为回答附 citation，资料不足或版本冲突时明确拒答或要求核验。 <span data-task-id="s03-t011"></span>
+- [ ] 建 retrieval eval，记录问题、期望资料、检索结果与引用正确性。 <span data-task-id="s03-t012"></span>
 
-- [ ] 理解 State、Node、Edge 与 Conditional Edge。
-- [ ] 理解 reducer 以及并发更新 state 的规则。
-- [ ] 实现 checkpoint 并从中断处恢复。
-- [ ] 实现 interrupt 与 human-in-the-loop。
-- [ ] 实现有限 retry、fallback 与错误节点。
-- [ ] 把 Stage 1 的裸 Agent Loop 改写成 Graph。
-- [ ] 把 Stage 2 的检索、分析与回答拆成可追踪节点。
-- [ ] 为关键节点编写单元测试和集成测试。
+项目同步：完成“故障码解释”“动作前 SOP 查询”“接口参数查询”三类问答。检索文本是不可信资料，不能修改权限、解除限位或直接触发动作。
 
-示例：
+## 步骤 3 · 最小 Memory → 有效上下文
 
-```text
-START → Planner → Search → Enough evidence?
-                      ↙ No          Yes ↘
-                  Search again       Answer → END
-```
+- [ ] 只保留任务、当前状态、最近动作、失败原因和用户约束。 <span data-task-id="s03-t013"></span>
+- [ ] 区分真实 robot state、模型推断和历史状态；运动前重新读取真实状态。 <span data-task-id="s03-t014"></span>
+- [ ] 给任务记忆设置生命周期、大小限制与清理条件。 <span data-task-id="s03-t015"></span>
+- [ ] 将安全约束保存在受控配置中，禁止对话或 RAG 覆盖。 <span data-task-id="s03-t016"></span>
 
-### Backend Engineering
+项目同步：让“刚才失败了，先回 Home”能引用失败原因，同时重新校验当前位置与路径。
 
-- [ ] 使用 FastAPI 创建 REST API。
-- [ ] 用 Pydantic 定义 request / response schema。
-- [ ] 理解 async / await，避免阻塞事件循环。
-- [ ] 实现 SSE 或等价 streaming response。
-- [ ] 统一处理异常、错误码和日志字段。
-- [ ] 保存 Agent session 与历史任务。
-- [ ] 掌握 SQLite；用 PostgreSQL 完成基本 CRUD。
-- [ ] 知道 Redis 在缓存、锁、队列和短期状态中的用途。
-- [ ] 使用 `.env` 或安全配置系统管理环境变量。
-- [ ] 使用 uv / pip / poetry 中的一种管理依赖。
-- [ ] 用 pytest 完成核心路径测试。
-- [ ] 编写 Dockerfile 与健康检查。
-- [ ] 加入 `.gitignore`、README 和最小 CI。
+## 产出与完成判据 · v0.3
 
-## 阶段产出
-
-把 UR7e Agent 升级为 Docker 化 V2 服务：Client → FastAPI → LangGraph → RAG / Robot Tools / Session Database。支持流式响应、显式状态机、任务恢复、持久化会话、错误追踪和最小权限配置。
-
-## 暂不深入
-
-- 同时学习多个 Agent 编排框架
-- Kubernetes、Service Mesh 与复杂微服务拆分
-- 过早引入消息队列和多套数据库
-- 为所有节点设计抽象层而没有真实需求
-
-## 学习完成判据
-
-- [ ] 能从源码指出 loop、state、tool registry、checkpoint 与 permission gate。
-- [ ] 服务重启后可以恢复至少一类中断任务。
-- [ ] API schema、失败响应、流式输出与会话隔离均有测试。
-- [ ] 新环境能用一个明确命令启动完整服务。
-- [ ] 能从 trace 定位一次真实失败并写出复盘。
-
-## 长期项目演进 · V2 · 显式状态机与仿真
-
-当前必做：FastAPI + LangGraph 管理 plan → validate → execute → observe → recover。沿用 Docker、异常处理和持久化能力，优先在仿真中跑通。
-
-### 当前必做（旁支阶段在独立实验中完成）
-
-- [ ] 实现超时、有限恢复与 human approval；执行前校验计划，中断恢复时重新查询状态，避免重复执行动作。
-- [ ] 完成 ROS2 入门最小示例：Node/Topic/Service/Action；理解 TF 坐标关系及 MoveIt2 planning scene/trajectory，并演示一次仿真规划。
-
-### 阶段产出 / 完成判据
-
-交付 V2：状态转移图、服务启动说明，以及超时、拒绝审批、恢复执行的可复现 trace。
+- [ ] 发布接口文档、手册问答示例、索引构建脚本、最小 Memory 与 trace。 <span data-task-id="s03-t017"></span>
+- [ ] 至少 10 个资料问题和 10 个接口边界案例都有预期结果及实际结果。 <span data-task-id="s03-t018"></span>
+- [ ] 引用可追溯，越界请求被确定性拒绝，过期 Memory 不被当作实时状态。 <span data-task-id="s03-t019"></span>
 
 
-[← Stage 2](stage-02.md) · [下一阶段：Skills / MCP →](stage-04.md)
+[← Stage 2](stage-02.md) · [路线总览](index.md) · [Stage 4 →](stage-04.md)

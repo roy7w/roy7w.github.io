@@ -1,5 +1,5 @@
 site_name: roy7w · AI Agent 学习博客
-site_description: 以 UR7e 具身 Agent 为长期主项目的 Stage 0–10 求职与工程学习路线
+site_description: 以 UR7e 具身 Agent 为长期主项目的 Stage 0–9 求职与工程学习路线
 site_author: roy wang
 site_url: https://roy7w.github.io/
 repo_url: https://github.com/roy7w/roy7w.github.io
@@ -39,16 +39,16 @@ nav:
   - AI Agent 学习路线:
       - 路线总览: ai-agent/index.md
       - "Stage 0 · LLM & Agent 全局认知": ai-agent/stage-00.md
-      - "Stage 1 · Minimal Agent Loop": ai-agent/stage-01.md
-      - "Stage 2 · Tool / RAG / Memory": ai-agent/stage-02.md
-      - "Stage 3 · Harness / LangGraph / Backend": ai-agent/stage-03.md
-      - "Stage 4 · Skills / MCP": ai-agent/stage-04.md
-      - "Stage 5 · Multi-Agent": ai-agent/stage-05.md
-      - "Stage 6 · SFT / LoRA / QLoRA": ai-agent/stage-06.md
-      - "Stage 7 · Eval / Observability / Safety": ai-agent/stage-07.md
-      - "Stage 8 · Inference / vLLM / Infra": ai-agent/stage-08.md
-      - "Stage 9 · Browser / Computer Use": ai-agent/stage-09.md
-      - "Stage 10 · Production Project": ai-agent/stage-10.md
+      - "Stage 1 · Minimal Agent + Robot Mock": ai-agent/stage-01.md
+      - "Stage 2 · ROS2 / MoveIt2 / UR7e 控制基础": ai-agent/stage-02.md
+      - "Stage 3 · Robot Tools + RAG + Memory": ai-agent/stage-03.md
+      - "Stage 4 · LangGraph + Backend + 受约束具身 Agent": ai-agent/stage-04.md
+      - "Stage 5 · Skills + MCP + UR7e Agent": ai-agent/stage-05.md
+      - "Stage 6 · Eval + Safety + Observability": ai-agent/stage-06.md
+      - "Stage 7 · VLA / 模仿学习 / Post-training（Advanced / Optional）": ai-agent/stage-07.md
+      - "Stage 8 · Inference / AI Infra / Edge Deployment": ai-agent/stage-08.md
+      - "Stage 9 · Production / Portfolio / 求职": ai-agent/stage-09.md
+      - "Later / Optional": ai-agent/later.md
   - Agent 项目实践: projects/index.md
 
 markdown_extensions:
@@ -79,6 +79,11 @@ extra_css:
   - assets/stylesheets/extra.css
 
 extra_javascript:
+  - assets/javascripts/progress-data.js
   - assets/javascripts/progress.js
 
 copyright: Copyright &copy; 2026 roy wang
+
+not_in_nav: |
+  /ai-agent/archive/**
+  /ai-agent/stage-10.md

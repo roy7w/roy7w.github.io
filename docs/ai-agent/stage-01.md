@@ -1,100 +1,65 @@
-# Stage 1 · Minimal Agent Loop
+# Stage 1 · Minimal Agent + Robot Mock
 
-## 目标
+## 目标与项目增量
 
-围绕 UR7e 具身 Agent 推进本阶段能力。
+沿用 Agent-Learning-Hub 的 Minimal Agent Loop 骨架，不依赖 LangChain / LangGraph。把每个 API 与协议练习立即接入同一个 Robot Mock，交付 **Embodied Agent v0.1**。
 
-不依赖高级 Agent 框架，从零实现一个可观察、可限制、可恢复的最小 Agent Loop，真正理解模型如何选择并调用工具。
+## 步骤 1 · LLM API 与 Messages → 建立任务入口
 
-## 与长期项目的关系
+- [ ] 使用一个主流 LLM API 完成多轮对话。 <span data-task-id="s01-t000"></span>
+- [ ] 正确维护 system、user、assistant 与 tool 消息。 <span data-task-id="s01-t001"></span>
+- [ ] 控制 temperature、max tokens 与超时。 <span data-task-id="s01-t002"></span>
+- [ ] 处理认证错误、网络错误、rate limit 与服务端错误。 <span data-task-id="s01-t003"></span>
+- [ ] 为瞬时错误加入带退避的有限重试。 <span data-task-id="s01-t004"></span>
+- [ ] 记录 request id、token usage、延迟与错误类型。 <span data-task-id="s01-t005"></span>
 
-从本阶段开始建设 UR7e 具身 Agent V0，后续持续复用同一内核；通用工具只作为最小协议练习。
+项目同步：输入“回到 Home 后打开夹爪”，保存 messages，区分模型回复与实际执行事实。
 
-[查看完整项目演化方案](../projects/index.md)
+## 步骤 2 · Structured Output → 可校验的高层计划
 
-## Todo
+- [ ] 让模型按 JSON Schema 输出结构化数据。 <span data-task-id="s01-t006"></span>
+- [ ] 使用 Pydantic 或等价方案校验输出。 <span data-task-id="s01-t007"></span>
+- [ ] 处理缺字段、类型错误和额外字段。 <span data-task-id="s01-t008"></span>
+- [ ] 对可修复的非法结构实现一次有限修复。 <span data-task-id="s01-t009"></span>
+- [ ] 对不可修复结果明确失败，不静默猜测。 <span data-task-id="s01-t010"></span>
+- [ ] 定义包含 skill、命名目标、约束与结束条件的计划 schema。 <span data-task-id="s01-t011"></span>
 
-### LLM API
+项目同步：计划只允许选择高层 skill 与白名单目标。LLM 不直接生成底层关节角、伺服命令或未经验证的轨迹。
 
-- [ ] 使用一个主流 LLM API 完成多轮对话。
-- [ ] 正确维护 system、user、assistant 与 tool 消息。
-- [ ] 控制 temperature、max tokens 与超时。
-- [ ] 处理认证错误、网络错误、rate limit 与服务端错误。
-- [ ] 为瞬时错误加入带退避的有限重试。
-- [ ] 记录 request id、token usage、延迟与错误类型。
+## 步骤 3 · Robot Mock → 工具执行与状态反馈
 
-### Structured Output
+- [ ] 实现 Mock get_robot_state / move_joint / move_linear / open_gripper / close_gripper / stop_robot。 <span data-task-id="s01-t012"></span>
+- [ ] 为每个工具写清 name、description、parameters 与返回值。 <span data-task-id="s01-t013"></span>
+- [ ] 理解工具描述和 schema 如何影响模型选择。 <span data-task-id="s01-t014"></span>
+- [ ] 解析模型产生的 tool call 与参数。 <span data-task-id="s01-t015"></span>
+- [ ] 执行工具并把 observation 放回消息历史。 <span data-task-id="s01-t016"></span>
+- [ ] 处理未知工具、非法参数、空结果与工具异常。 <span data-task-id="s01-t017"></span>
+- [ ] 让最终答案明确区分工具事实与模型推断。 <span data-task-id="s01-t018"></span>
+- [ ] 用 go_home / move_to_named_pose 高层 skill 封装 Mock move_joint / move_linear，仅向 LLM 暴露前者。 <span data-task-id="s01-t019"></span>
 
-- [ ] 让模型按 JSON Schema 输出结构化数据。
-- [ ] 使用 Pydantic 或等价方案校验输出。
-- [ ] 处理缺字段、类型错误和额外字段。
-- [ ] 对可修复的非法结构实现一次有限修复。
-- [ ] 对不可修复结果明确失败，不静默猜测。
+项目同步：低层 Mock 方法仅由确定性适配器调用；记录执行前后状态、单位、目标名称和结果。stop_robot 是软件停止模拟，不代表实体急停。
 
-### Tool Calling
+## 步骤 4 · Agent Loop → 有限、可追踪的闭环
 
-- [ ] 自己定义 `calculator()`、`read_file()`、`get_time()` 等至少三个工具。
-- [ ] 为每个工具写清 name、description、parameters 与返回值。
-- [ ] 理解工具描述和 schema 如何影响模型选择。
-- [ ] 解析模型产生的 tool call 与参数。
-- [ ] 执行工具并把 observation 放回消息历史。
-- [ ] 处理未知工具、非法参数、空结果与工具异常。
-- [ ] 让最终答案明确区分工具事实与模型推断。
+- [ ] 不使用 LangChain / LangGraph，实现完整 while-loop。 <span data-task-id="s01-t020"></span>
+- [ ] 加入最大执行步数和总超时。 <span data-task-id="s01-t021"></span>
+- [ ] 给每个工具加入独立超时。 <span data-task-id="s01-t022"></span>
+- [ ] 捕获异常并返回机器可读错误。 <span data-task-id="s01-t023"></span>
+- [ ] 检测完全相同的重复调用。 <span data-task-id="s01-t024"></span>
+- [ ] 支持正常完成、失败结束与达到预算结束。 <span data-task-id="s01-t025"></span>
+- [ ] 打印或保存完整 execution trace。 <span data-task-id="s01-t026"></span>
+- [ ] 对状态不明的运动调用先查询状态，不盲目 retry，以免重复执行。 <span data-task-id="s01-t027"></span>
 
-### Agent Loop 与边界
+项目同步：实现 observe → decide → validate → act → observe；注入未知目标、非法参数、异常、timeout 与重复调用。
 
-- [ ] 不使用 LangChain / LangGraph，实现完整 while-loop。
-- [ ] 加入最大执行步数和总超时。
-- [ ] 给每个工具加入独立超时。
-- [ ] 捕获异常并返回机器可读错误。
-- [ ] 检测完全相同的重复调用。
-- [ ] 支持正常完成、失败结束与达到预算结束。
-- [ ] 打印或保存完整 execution trace。
-- [ ] 对读文件等工具限制允许访问的目录。
-- [ ] 为至少五类任务编写自动化测试。
+## 产出与完成判据 · v0.1
 
-核心循环应能独立解释：
+- [ ] 发布可运行 Mock Demo、固定依赖、示例 messages、schema 和 trace。 <span data-task-id="s01-t028"></span>
+- [ ] 在至少 10 条基础任务中完成至少 8 条，并记录失败而不伪造成功。 <span data-task-id="s01-t029"></span>
+- [ ] max steps、timeout、非法参数和未知工具均能稳定结束，且无低层运动接口暴露给 LLM。 <span data-task-id="s01-t030"></span>
+- [ ] 能从一次 trace 解释模型决策、参数校验、执行前后状态与退出原因。 <span data-task-id="s01-t031"></span>
 
-```python
-while step < max_steps:
-    response = llm(messages, tools)
-    if response.tool_call:
-        result = execute_tool(response.tool_call)
-        messages.append(result)
-    else:
-        return response.answer
-```
-
-## 阶段产出
-
-一个约 100–300 行的 Minimal Agent 内核及 UR7e 模拟工具适配层，包含代码、测试、示例 trace、架构图和 README。作为长期项目 V0，验证自然语言指令到模拟动作及 observation 的闭环。代码行数仅作参考。
-
-## 暂不深入
-
-- LangChain、LangGraph 等框架封装
-- 长期记忆、向量数据库和复杂 RAG
-- 多 Agent 协作
-- 自动执行 shell、写文件或网络副作用
-
-## 学习完成判据
-
-- [ ] 能在白板上从消息序列解释一次完整 tool call。
-- [ ] Agent 在测试集中能够正确完成至少 8/10 个基础任务。
-- [ ] 超时、未知工具、非法参数和死循环都有可复现测试。
-- [ ] 任意一次执行都能从 trace 中定位模型决策、工具输入输出和结束原因。
-
-## 长期项目演进 · V0 · 模拟工具闭环
-
-当前必做：沿用手写循环，不使用 LangChain。先用 mock/simulator robot tools 验证自然语言 → tool call → 模拟执行 → observation，暂不控制真机。原有通用工具 Todo 作为协议练习，机器人工具复用同一套接口。
-
-### 当前必做（旁支阶段在独立实验中完成）
-
-- [ ] 实现 get_robot_state、move_to_named_pose、open_gripper、close_gripper，使用命名位姿白名单并返回结构化状态。
-- [ ] 用正常任务、未知位姿和工具超时验证模拟闭环；保存执行前后状态及 trace。
-
-### 阶段产出 / 完成判据
-
-交付可复现 V0：自然语言指令驱动模拟状态变化，失败有明确原因；打 v0 / stage-1 tag。
+下一阶段替换执行适配层，保留高层 schema 与测试用例；本阶段不操作真机。
 
 
-[← Stage 0](stage-00.md) · [下一阶段：Tool / RAG / Memory →](stage-02.md)
+[← Stage 0](stage-00.md) · [路线总览](index.md) · [Stage 2 →](stage-02.md)

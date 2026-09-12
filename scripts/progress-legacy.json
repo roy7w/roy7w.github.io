@@ -1,0 +1,2222 @@
+{
+  "区分 chatbot、workflow、agent 与 multi-agent。": [
+    {
+      "page": "stage-00",
+      "key": "o0uajr"
+    }
+  ],
+  "理解 Agent 基本循环：observe → decide → act → observe。": [
+    {
+      "page": "stage-00",
+      "key": "1shm48h"
+    }
+  ],
+  "能举例说明确定性 workflow 比 Agent 更合适的场景。": [
+    {
+      "page": "stage-00",
+      "key": "1ed23at"
+    }
+  ],
+  "能说明 Agent 的自主决策带来的价值、成本和风险。": [
+    {
+      "page": "stage-00",
+      "key": "1nvkfyu"
+    }
+  ],
+  "理解 Tool、State、Memory、RAG、Workflow、Eval 在 Agent 系统中的位置。": [
+    {
+      "page": "stage-00",
+      "key": "1cz8c4v"
+    }
+  ],
+  "能解释 MCP、Skills 和 Agent Harness 分别解决什么问题。": [
+    {
+      "page": "stage-00",
+      "key": "16pl3ov"
+    }
+  ],
+  "理解 token、tokenizer、embedding 与 vocabulary。": [
+    {
+      "page": "stage-00",
+      "key": "e8fr7d"
+    }
+  ],
+  "理解 Attention、FFN、Residual、LayerNorm 的作用。": [
+    {
+      "page": "stage-00",
+      "key": "1yo69ua"
+    }
+  ],
+  "理解 Decoder-only Transformer 如何进行自回归生成。": [
+    {
+      "page": "stage-00",
+      "key": "e1qt73"
+    }
+  ],
+  "理解训练、推理、上下文窗口三者的区别。": [
+    {
+      "page": "stage-00",
+      "key": "1aud6zm"
+    }
+  ],
+  "理解 temperature、top-p、max tokens 与 stop sequence。": [
+    {
+      "page": "stage-00",
+      "key": "1qwo4am"
+    }
+  ],
+  "理解 system / user / assistant / tool message 的职责。": [
+    {
+      "page": "stage-00",
+      "key": "11zxhkf"
+    }
+  ],
+  "知道幻觉、上下文污染、指令冲突和 prompt injection 是什么。": [
+    {
+      "page": "stage-00",
+      "key": "xysp86"
+    }
+  ],
+  "能区分 Pre-training、Post-training、Inference 与 Application。": [
+    {
+      "page": "stage-00",
+      "key": "152qyl4"
+    }
+  ],
+  "能区分 RAG 与 Fine-tuning。": [
+    {
+      "page": "stage-00",
+      "key": "1t35lyt"
+    }
+  ],
+  "能区分模型能力问题、检索问题和系统编排问题。": [
+    {
+      "page": "stage-00",
+      "key": "rrs6lr"
+    }
+  ],
+  "阅读一份主流机构关于有效构建 Agent 的基础指南。": [
+    {
+      "page": "stage-00",
+      "key": "b43hca"
+    }
+  ],
+  "阅读一个主流 LLM API 的 messages、structured output 与 tool calling 文档。": [
+    {
+      "page": "stage-00",
+      "key": "5x84gp"
+    }
+  ],
+  "不看资料，能用 5 分钟画出 LLM 到 Agent 的技术地图。": [
+    {
+      "page": "stage-00",
+      "key": "irmh4"
+    }
+  ],
+  "面对三个真实需求，能给出 workflow / single-agent / multi-agent 选择及理由。": [
+    {
+      "page": "stage-00",
+      "key": "bykpa1"
+    }
+  ],
+  "能用自己的话解释生成参数变化会如何影响输出。": [
+    {
+      "page": "stage-00",
+      "key": "mcty2k"
+    }
+  ],
+  "已提交技术地图与决策说明，并让另一位读者能够复述核心关系。": [
+    {
+      "page": "stage-00",
+      "key": "12adrvc"
+    }
+  ],
+  "画出 Natural Language → Agent Planner → Robot Tools/ROS2/UR API → Motion Planning/Execution → Observation/Feedback 的架构，并解释反馈如何回到 Planner。": [
+    {
+      "page": "stage-00",
+      "key": "daew1n"
+    }
+  ],
+  "能区分语义任务计划与运动轨迹；说明 LLM 不能替代底层控制器和安全约束。": [
+    {
+      "page": "stage-00",
+      "key": "15vitnv"
+    }
+  ],
+  "使用一个主流 LLM API 完成多轮对话。": [
+    {
+      "page": "stage-01",
+      "key": "1vjo3cb"
+    }
+  ],
+  "正确维护 system、user、assistant 与 tool 消息。": [
+    {
+      "page": "stage-01",
+      "key": "1jznnho"
+    }
+  ],
+  "控制 temperature、max tokens 与超时。": [
+    {
+      "page": "stage-01",
+      "key": "4igjds"
+    }
+  ],
+  "处理认证错误、网络错误、rate limit 与服务端错误。": [
+    {
+      "page": "stage-01",
+      "key": "ejqas0"
+    }
+  ],
+  "为瞬时错误加入带退避的有限重试。": [
+    {
+      "page": "stage-01",
+      "key": "1um3ozc"
+    }
+  ],
+  "记录 request id、token usage、延迟与错误类型。": [
+    {
+      "page": "stage-01",
+      "key": "p33ywc"
+    }
+  ],
+  "让模型按 JSON Schema 输出结构化数据。": [
+    {
+      "page": "stage-01",
+      "key": "10m53zk"
+    }
+  ],
+  "使用 Pydantic 或等价方案校验输出。": [
+    {
+      "page": "stage-01",
+      "key": "10k1mte"
+    }
+  ],
+  "处理缺字段、类型错误和额外字段。": [
+    {
+      "page": "stage-01",
+      "key": "ovm5xj"
+    }
+  ],
+  "对可修复的非法结构实现一次有限修复。": [
+    {
+      "page": "stage-01",
+      "key": "r0444c"
+    }
+  ],
+  "对不可修复结果明确失败，不静默猜测。": [
+    {
+      "page": "stage-01",
+      "key": "5aehls"
+    }
+  ],
+  "自己定义 calculator()、read_file()、get_time() 等至少三个工具。": [
+    {
+      "page": "stage-01",
+      "key": "5ppyer"
+    }
+  ],
+  "为每个工具写清 name、description、parameters 与返回值。": [
+    {
+      "page": "stage-01",
+      "key": "anm9f2"
+    }
+  ],
+  "理解工具描述和 schema 如何影响模型选择。": [
+    {
+      "page": "stage-01",
+      "key": "1gha1l9"
+    }
+  ],
+  "解析模型产生的 tool call 与参数。": [
+    {
+      "page": "stage-01",
+      "key": "9imm3p"
+    }
+  ],
+  "执行工具并把 observation 放回消息历史。": [
+    {
+      "page": "stage-01",
+      "key": "12jh209"
+    }
+  ],
+  "处理未知工具、非法参数、空结果与工具异常。": [
+    {
+      "page": "stage-01",
+      "key": "x5xb37"
+    }
+  ],
+  "让最终答案明确区分工具事实与模型推断。": [
+    {
+      "page": "stage-01",
+      "key": "1kfiaqs"
+    }
+  ],
+  "不使用 LangChain / LangGraph，实现完整 while-loop。": [
+    {
+      "page": "stage-01",
+      "key": "kpo8ns"
+    }
+  ],
+  "加入最大执行步数和总超时。": [
+    {
+      "page": "stage-01",
+      "key": "1rgv6b"
+    }
+  ],
+  "给每个工具加入独立超时。": [
+    {
+      "page": "stage-01",
+      "key": "tc3z9c"
+    }
+  ],
+  "捕获异常并返回机器可读错误。": [
+    {
+      "page": "stage-01",
+      "key": "1nvd05u"
+    }
+  ],
+  "检测完全相同的重复调用。": [
+    {
+      "page": "stage-01",
+      "key": "1nt7ter"
+    }
+  ],
+  "支持正常完成、失败结束与达到预算结束。": [
+    {
+      "page": "stage-01",
+      "key": "166eacd"
+    }
+  ],
+  "打印或保存完整 execution trace。": [
+    {
+      "page": "stage-01",
+      "key": "18q010e"
+    }
+  ],
+  "对读文件等工具限制允许访问的目录。": [
+    {
+      "page": "stage-01",
+      "key": "s9ebd1"
+    }
+  ],
+  "为至少五类任务编写自动化测试。": [
+    {
+      "page": "stage-01",
+      "key": "1acdvvx"
+    }
+  ],
+  "能在白板上从消息序列解释一次完整 tool call。": [
+    {
+      "page": "stage-01",
+      "key": "eh0ri2"
+    }
+  ],
+  "Agent 在测试集中能够正确完成至少 8/10 个基础任务。": [
+    {
+      "page": "stage-01",
+      "key": "2ei12y"
+    }
+  ],
+  "超时、未知工具、非法参数和死循环都有可复现测试。": [
+    {
+      "page": "stage-01",
+      "key": "rayv7n"
+    }
+  ],
+  "任意一次执行都能从 trace 中定位模型决策、工具输入输出和结束原因。": [
+    {
+      "page": "stage-01",
+      "key": "13afwf1"
+    }
+  ],
+  "实现 get_robot_state、move_to_named_pose、open_gripper、close_gripper，使用命名位姿白名单并返回结构化状态。": [
+    {
+      "page": "stage-01",
+      "key": "egnz5a"
+    }
+  ],
+  "用正常任务、未知位姿和工具超时验证模拟闭环；保存执行前后状态及 trace。": [
+    {
+      "page": "stage-01",
+      "key": "5avlh5"
+    }
+  ],
+  "解释 RAG 为什么出现，以及它不能解决什么。": [
+    {
+      "page": "stage-02",
+      "key": "ge8ca8"
+    }
+  ],
+  "区分 RAG、Fine-tuning 与 Agent。": [
+    {
+      "page": "stage-02",
+      "key": "147whd8"
+    }
+  ],
+  "读取 PDF、Markdown 与 TXT，并保留来源元数据。": [
+    {
+      "page": "stage-02",
+      "key": "186cx6i"
+    }
+  ],
+  "实现 document chunking，比较 chunk size 与 overlap。": [
+    {
+      "page": "stage-02",
+      "key": "4c4mme"
+    }
+  ],
+  "理解 embedding 与 cosine similarity。": [
+    {
+      "page": "stage-02",
+      "key": "18cexlz"
+    }
+  ],
+  "使用 FAISS 或 Chroma 中的一个建立向量索引。": [
+    {
+      "page": "stage-02",
+      "key": "kbmoxa"
+    }
+  ],
+  "实现 Top-K retrieval 并把证据加入上下文。": [
+    {
+      "page": "stage-02",
+      "key": "1tyt2wo"
+    }
+  ],
+  "让回答提供可点击或可定位的 citation。": [
+    {
+      "page": "stage-02",
+      "key": "1s6t6ra"
+    }
+  ],
+  "当证据不足时拒绝编造答案。": [
+    {
+      "page": "stage-02",
+      "key": "g1tmxg"
+    }
+  ],
+  "区分 Dense Retrieval 与 BM25 / Sparse Retrieval。": [
+    {
+      "page": "stage-02",
+      "key": "5zygi4"
+    }
+  ],
+  "知道 Hybrid Search 的适用场景。": [
+    {
+      "page": "stage-02",
+      "key": "12fluld"
+    }
+  ],
+  "理解 reranker 在召回之后解决什么问题。": [
+    {
+      "page": "stage-02",
+      "key": "38q55x"
+    }
+  ],
+  "用 Recall@K 或命中率评估检索。": [
+    {
+      "page": "stage-02",
+      "key": "vz5a5p"
+    }
+  ],
+  "建立一组包含同义表达、长问题和无答案问题的检索测试集。": [
+    {
+      "page": "stage-02",
+      "key": "16ou09"
+    }
+  ],
+  "区分“没有检索到”“证据有歧义”和“模型不会回答”。": [
+    {
+      "page": "stage-02",
+      "key": "1qlpmfc"
+    }
+  ],
+  "把文件读取、Web 搜索、数据库查询、代码执行和 RAG 检索设计成独立工具。": [
+    {
+      "page": "stage-02",
+      "key": "oy6in3"
+    }
+  ],
+  "为工具定义严格输入输出 schema。": [
+    {
+      "page": "stage-02",
+      "key": "1lxobda"
+    }
+  ],
+  "处理空结果、分页、超时、异常和重复调用。": [
+    {
+      "page": "stage-02",
+      "key": "126th36"
+    }
+  ],
+  "把外部内容标记为不可信数据，避免把网页文本当系统指令。": [
+    {
+      "page": "stage-02",
+      "key": "6n1i05"
+    }
+  ],
+  "对写操作、代码执行和网络访问设置最小权限。": [
+    {
+      "page": "stage-02",
+      "key": "j0voio"
+    }
+  ],
+  "记录工具成功率、延迟与失败类型。": [
+    {
+      "page": "stage-02",
+      "key": "cde36i"
+    }
+  ],
+  "区分 Context 与 Memory。": [
+    {
+      "page": "stage-02",
+      "key": "1792pw4"
+    }
+  ],
+  "区分 short-term、session 与 long-term memory。": [
+    {
+      "page": "stage-02",
+      "key": "c79ugh"
+    }
+  ],
+  "设计哪些信息允许写入长期记忆，哪些禁止写入。": [
+    {
+      "page": "stage-02",
+      "key": "11wztn"
+    }
+  ],
+  "在上下文变长时生成可追溯摘要。": [
+    {
+      "page": "stage-02",
+      "key": "1sbmrk1"
+    }
+  ],
+  "为记忆加入用户/会话隔离和删除机制。": [
+    {
+      "page": "stage-02",
+      "key": "lb8lrx"
+    }
+  ],
+  "验证旧记忆、错误记忆和冲突记忆对结果的影响。": [
+    {
+      "page": "stage-02",
+      "key": "1l8jwvd"
+    }
+  ],
+  "理解“把所有历史全塞回上下文”为何不可扩展。": [
+    {
+      "page": "stage-02",
+      "key": "1ff0ni8"
+    }
+  ],
+  "任何事实性回答都能回到具体文档片段。": [
+    {
+      "page": "stage-02",
+      "key": "17w8wib"
+    }
+  ],
+  "能分别测量 retrieval quality 与 answer quality。": [
+    {
+      "page": "stage-02",
+      "key": "cewoha"
+    }
+  ],
+  "对无答案问题不会伪造 citation。": [
+    {
+      "page": "stage-02",
+      "key": "1bf10q5"
+    }
+  ],
+  "能解释每类 Memory 的生命周期、权限和清理方式。": [
+    {
+      "page": "stage-02",
+      "key": "1gounhe"
+    }
+  ],
+  "项目可由 README 中的步骤从零复现。": [
+    {
+      "page": "stage-02",
+      "key": "d7k1r6"
+    }
+  ],
+  "保存手册型号、版本、章节/页码元数据，让知识回答带可定位引用，未知故障码不编造。": [
+    {
+      "page": "stage-02",
+      "key": "7c34qy"
+    }
+  ],
+  "打通手册检索、故障码查询、当前状态和模拟动作工具；区分会话任务上下文与实时机器人状态。": [
+    {
+      "page": "stage-02",
+      "key": "cys35r"
+    }
+  ],
+  "能解释 Harness 与 Stage 1 裸 while-loop 的区别。": [
+    {
+      "page": "stage-03",
+      "key": "1kl4qaz"
+    }
+  ],
+  "在一个真实 Agent 项目中找到 Agent Loop 与 Tool Registry。": [
+    {
+      "page": "stage-03",
+      "key": "80zz8y"
+    }
+  ],
+  "找到 Session Store 与 Context Management。": [
+    {
+      "page": "stage-03",
+      "key": "4fdhre"
+    }
+  ],
+  "找到 Permission Gate、Retry、Trace 与 Logging。": [
+    {
+      "page": "stage-03",
+      "key": "11f2ng0"
+    }
+  ],
+  "观察并解释一次完整 execution trace。": [
+    {
+      "page": "stage-03",
+      "key": "1f846r5"
+    }
+  ],
+  "理解 checkpoint、resume、interrupt 与 human approval。": [
+    {
+      "page": "stage-03",
+      "key": "1xyipix"
+    }
+  ],
+  "理解模型、工具、存储和运行时之间的接口边界。": [
+    {
+      "page": "stage-03",
+      "key": "1yi6ieq"
+    }
+  ],
+  "理解 State、Node、Edge 与 Conditional Edge。": [
+    {
+      "page": "stage-03",
+      "key": "15m5fci"
+    }
+  ],
+  "理解 reducer 以及并发更新 state 的规则。": [
+    {
+      "page": "stage-03",
+      "key": "1jjj1m8"
+    }
+  ],
+  "实现 checkpoint 并从中断处恢复。": [
+    {
+      "page": "stage-03",
+      "key": "1id2th9"
+    }
+  ],
+  "实现 interrupt 与 human-in-the-loop。": [
+    {
+      "page": "stage-03",
+      "key": "ztboy7"
+    }
+  ],
+  "实现有限 retry、fallback 与错误节点。": [
+    {
+      "page": "stage-03",
+      "key": "vk1kme"
+    }
+  ],
+  "把 Stage 1 的裸 Agent Loop 改写成 Graph。": [
+    {
+      "page": "stage-03",
+      "key": "itiqre"
+    }
+  ],
+  "把 Stage 2 的检索、分析与回答拆成可追踪节点。": [
+    {
+      "page": "stage-03",
+      "key": "pr2d7"
+    }
+  ],
+  "为关键节点编写单元测试和集成测试。": [
+    {
+      "page": "stage-03",
+      "key": "1bhxngd"
+    }
+  ],
+  "使用 FastAPI 创建 REST API。": [
+    {
+      "page": "stage-03",
+      "key": "1fg5ckl"
+    }
+  ],
+  "用 Pydantic 定义 request / response schema。": [
+    {
+      "page": "stage-03",
+      "key": "o0x0nz"
+    }
+  ],
+  "理解 async / await，避免阻塞事件循环。": [
+    {
+      "page": "stage-03",
+      "key": "k6y77a"
+    }
+  ],
+  "实现 SSE 或等价 streaming response。": [
+    {
+      "page": "stage-03",
+      "key": "1p7tzy0"
+    }
+  ],
+  "统一处理异常、错误码和日志字段。": [
+    {
+      "page": "stage-03",
+      "key": "1psoe3c"
+    }
+  ],
+  "保存 Agent session 与历史任务。": [
+    {
+      "page": "stage-03",
+      "key": "u4ek9f"
+    }
+  ],
+  "掌握 SQLite；用 PostgreSQL 完成基本 CRUD。": [
+    {
+      "page": "stage-03",
+      "key": "1q0r43g"
+    }
+  ],
+  "知道 Redis 在缓存、锁、队列和短期状态中的用途。": [
+    {
+      "page": "stage-03",
+      "key": "qr60zu"
+    }
+  ],
+  "使用 .env 或安全配置系统管理环境变量。": [
+    {
+      "page": "stage-03",
+      "key": "ojdx5k"
+    }
+  ],
+  "使用 uv / pip / poetry 中的一种管理依赖。": [
+    {
+      "page": "stage-03",
+      "key": "1wgqrcl"
+    }
+  ],
+  "用 pytest 完成核心路径测试。": [
+    {
+      "page": "stage-03",
+      "key": "1irph4j"
+    }
+  ],
+  "编写 Dockerfile 与健康检查。": [
+    {
+      "page": "stage-03",
+      "key": "ll71cd"
+    }
+  ],
+  "加入 .gitignore、README 和最小 CI。": [
+    {
+      "page": "stage-03",
+      "key": "r665pz"
+    }
+  ],
+  "能从源码指出 loop、state、tool registry、checkpoint 与 permission gate。": [
+    {
+      "page": "stage-03",
+      "key": "n7kz"
+    }
+  ],
+  "服务重启后可以恢复至少一类中断任务。": [
+    {
+      "page": "stage-03",
+      "key": "11lqc5u"
+    }
+  ],
+  "API schema、失败响应、流式输出与会话隔离均有测试。": [
+    {
+      "page": "stage-03",
+      "key": "hm92ob"
+    }
+  ],
+  "新环境能用一个明确命令启动完整服务。": [
+    {
+      "page": "stage-03",
+      "key": "lq4uh0"
+    }
+  ],
+  "能从 trace 定位一次真实失败并写出复盘。": [
+    {
+      "page": "stage-03",
+      "key": "1qi9d9r"
+    }
+  ],
+  "实现超时、有限恢复与 human approval；执行前校验计划，中断恢复时重新查询状态，避免重复执行动作。": [
+    {
+      "page": "stage-03",
+      "key": "5lad5n"
+    }
+  ],
+  "完成 ROS2 入门最小示例：Node/Topic/Service/Action；理解 TF 坐标关系及 MoveIt2 planning scene/trajectory，并演示一次仿真规划。": [
+    {
+      "page": "stage-03",
+      "key": "1bbkmup"
+    }
+  ],
+  "能分别解释 Tool、Prompt 与 Skill。": [
+    {
+      "page": "stage-04",
+      "key": "1aqu80s"
+    }
+  ],
+  "说明 Skill 与 Tool、Skill 与普通系统提示的区别。": [
+    {
+      "page": "stage-04",
+      "key": "1hfo50c"
+    }
+  ],
+  "理解 Skill 为什么需要触发条件、步骤、资源和验收标准。": [
+    {
+      "page": "stage-04",
+      "key": "1xkv4tk"
+    }
+  ],
+  "写一个最小 SKILL.md。": [
+    {
+      "page": "stage-04",
+      "key": "zptl8o"
+    }
+  ],
+  "定义适用场景与明确的非适用场景。": [
+    {
+      "page": "stage-04",
+      "key": "2pk1os"
+    }
+  ],
+  "把复杂流程拆成可以验证的步骤。": [
+    {
+      "page": "stage-04",
+      "key": "waxmct"
+    }
+  ],
+  "为 Skill 配一个脚本、模板或参考资料。": [
+    {
+      "page": "stage-04",
+      "key": "s2uc4s"
+    }
+  ],
+  "定义输入、输出与失败处理。": [
+    {
+      "page": "stage-04",
+      "key": "166e90n"
+    }
+  ],
+  "编写 smoke test 与至少一个反例。": [
+    {
+      "page": "stage-04",
+      "key": "l5jup7"
+    }
+  ],
+  "为 Skill 建立版本记录和变更说明。": [
+    {
+      "page": "stage-04",
+      "key": "3ovo0b"
+    }
+  ],
+  "理解 MCP 出现的工程动机。": [
+    {
+      "page": "stage-04",
+      "key": "1ny2j4x"
+    }
+  ],
+  "区分 MCP Client 与 MCP Server。": [
+    {
+      "page": "stage-04",
+      "key": "zyikcl"
+    }
+  ],
+  "区分 Tool、Resource 与 Prompt。": [
+    {
+      "page": "stage-04",
+      "key": "sh46lt"
+    }
+  ],
+  "理解 capability discovery 与 schema negotiation。": [
+    {
+      "page": "stage-04",
+      "key": "19fq6mw"
+    }
+  ],
+  "理解 JSON-RPC 的请求、响应与错误结构。": [
+    {
+      "page": "stage-04",
+      "key": "hx50gj"
+    }
+  ],
+  "理解 stdio transport 与 HTTP transport 的差别。": [
+    {
+      "page": "stage-04",
+      "key": "2tbpwa"
+    }
+  ],
+  "知道生命周期、连接、超时与取消如何处理。": [
+    {
+      "page": "stage-04",
+      "key": "1bq421s"
+    }
+  ],
+  "运行一个已有 MCP Server。": [
+    {
+      "page": "stage-04",
+      "key": "1nhmorf"
+    }
+  ],
+  "从 Agent 连接并发现 Server 提供的能力。": [
+    {
+      "page": "stage-04",
+      "key": "1p0diun"
+    }
+  ],
+  "自己实现一个 MCP Server。": [
+    {
+      "page": "stage-04",
+      "key": "ksxp87"
+    }
+  ],
+  "注册多个严格 schema 的工具。": [
+    {
+      "page": "stage-04",
+      "key": "1sdi1nj"
+    }
+  ],
+  "暴露一个只读 Resource。": [
+    {
+      "page": "stage-04",
+      "key": "1prm1nl"
+    }
+  ],
+  "正确返回工具错误和空结果。": [
+    {
+      "page": "stage-04",
+      "key": "bshb9h"
+    }
+  ],
+  "为工具设置身份验证、权限与速率限制。": [
+    {
+      "page": "stage-04",
+      "key": "1c9vck1"
+    }
+  ],
+  "防止外部 Resource 中的提示注入覆盖系统指令。": [
+    {
+      "page": "stage-04",
+      "key": "1lrxr4e"
+    }
+  ],
+  "对 Server 进行单元测试和端到端测试。": [
+    {
+      "page": "stage-04",
+      "key": "1b5ind5"
+    }
+  ],
+  "能用一个例子清楚区分 Tool、Skill 与 MCP。": [
+    {
+      "page": "stage-04",
+      "key": "1gkyzqo"
+    }
+  ],
+  "新 Agent 无需修改 Server 代码即可发现并调用能力。": [
+    {
+      "page": "stage-04",
+      "key": "8yduxz"
+    }
+  ],
+  "MCP Server 的合法、非法、超时和无权限请求均有测试。": [
+    {
+      "page": "stage-04",
+      "key": "1s8p1e1"
+    }
+  ],
+  "Skill 有可重复的 smoke test 和明确验收结果。": [
+    {
+      "page": "stage-04",
+      "key": "1ob7m81"
+    }
+  ],
+  "断开 MCP 后，Agent 能给出清晰降级或失败信息。": [
+    {
+      "page": "stage-04",
+      "key": "1nyxdq7"
+    }
+  ],
+  "提供 robot.get_state、robot.plan_motion、robot.execute_motion、robot.gripper_open/close 与知识检索接口，定义严格 schema。": [
+    {
+      "page": "stage-04",
+      "key": "1yeji10"
+    }
+  ],
+  "区分只读、规划和危险执行权限；执行必须通过服务端校验与审批，拒绝过期计划和越权调用。": [
+    {
+      "page": "stage-04",
+      "key": "d0ke5"
+    }
+  ],
+  "理解 Planner、Executor、Reviewer、Critic、Router 与 Supervisor。": [
+    {
+      "page": "stage-05",
+      "key": "n2yjj5"
+    }
+  ],
+  "理解 handoff、delegation、shared state 与 message passing。": [
+    {
+      "page": "stage-05",
+      "key": "grt9cv"
+    }
+  ],
+  "区分顺序协作、并行协作和层级协作。": [
+    {
+      "page": "stage-05",
+      "key": "reie05"
+    }
+  ],
+  "能指出一个“伪 Multi-Agent”设计中可被普通函数替代的部分。": [
+    {
+      "page": "stage-05",
+      "key": "m6jy51"
+    }
+  ],
+  "为每个 Agent 定义唯一职责和允许使用的工具。": [
+    {
+      "page": "stage-05",
+      "key": "8tx3us"
+    }
+  ],
+  "定义每个 Agent 的输入与输出 schema。": [
+    {
+      "page": "stage-05",
+      "key": "plqq0b"
+    }
+  ],
+  "定义任务分解、所有权和结果合并规则。": [
+    {
+      "page": "stage-05",
+      "key": "1ng2ikc"
+    }
+  ],
+  "定义停止条件、最大循环次数、时间和 token 预算。": [
+    {
+      "page": "stage-05",
+      "key": "c7ehmt"
+    }
+  ],
+  "限制 Agent 之间无意义的来回对话。": [
+    {
+      "page": "stage-05",
+      "key": "cm91vu"
+    }
+  ],
+  "隔离不需要共享的上下文与敏感信息。": [
+    {
+      "page": "stage-05",
+      "key": "n9ujq1"
+    }
+  ],
+  "对共享状态定义写入者和冲突解决规则。": [
+    {
+      "page": "stage-05",
+      "key": "1k8q00g"
+    }
+  ],
+  "为高风险 handoff 加入人工确认。": [
+    {
+      "page": "stage-05",
+      "key": "1dtztv8"
+    }
+  ],
+  "追踪每个 Agent 的调用、成本、延迟和失败。": [
+    {
+      "page": "stage-05",
+      "key": "5chbkz"
+    }
+  ],
+  "处理子任务超时、部分失败与重试。": [
+    {
+      "page": "stage-05",
+      "key": "b4tnup"
+    }
+  ],
+  "让 Reviewer 基于可检查 rubric，而非泛泛“再改进”。": [
+    {
+      "page": "stage-05",
+      "key": "inmhi3"
+    }
+  ],
+  "先实现 single-agent baseline。": [
+    {
+      "page": "stage-05",
+      "key": "1fk6r5q"
+    }
+  ],
+  "再实现 planner–executor 或 researcher–writer–reviewer 版本。": [
+    {
+      "page": "stage-05",
+      "key": "1iyqbj"
+    }
+  ],
+  "使用同一测试集比较两种架构。": [
+    {
+      "page": "stage-05",
+      "key": "wf2un2"
+    }
+  ],
+  "比较成功率、延迟、token、工具调用次数与可解释性。": [
+    {
+      "page": "stage-05",
+      "key": "1svs329"
+    }
+  ],
+  "记录 Multi-Agent 改善和恶化的任务类型。": [
+    {
+      "page": "stage-05",
+      "key": "1xrjcmi"
+    }
+  ],
+  "能在收益不足时删掉一个 Agent。": [
+    {
+      "page": "stage-05",
+      "key": "126dwoe"
+    }
+  ],
+  "每个 Agent 都有不可被普通函数轻易替代的职责或隔离需求。": [
+    {
+      "page": "stage-05",
+      "key": "1rmheu6"
+    }
+  ],
+  "任意任务都能追踪到所有者、输入、输出与结束原因。": [
+    {
+      "page": "stage-05",
+      "key": "lw3nfs"
+    }
+  ],
+  "Multi-Agent 在预先定义的至少一类任务上显著优于 baseline。": [
+    {
+      "page": "stage-05",
+      "key": "1fetylb"
+    }
+  ],
+  "对失败任务能判断问题来自分解、路由、通信还是合并。": [
+    {
+      "page": "stage-05",
+      "key": "zjbzjg"
+    }
+  ],
+  "能明确说出何时应退回 single-agent。": [
+    {
+      "page": "stage-05",
+      "key": "lh17ww"
+    }
+  ],
+  "用结构化任务计划描述步骤、前置条件、工具参数、预期 observation 和失败处理；执行前做确定性安全检查。": [
+    {
+      "page": "stage-05",
+      "key": "1f3c2an"
+    }
+  ],
+  "在同一机械臂模拟任务集比较单 Agent 与按需拆分版本；若收益不足，记录结论并保留单 Agent。": [
+    {
+      "page": "stage-05",
+      "key": "l7l4pa"
+    }
+  ],
+  "区分知识缺失、行为不稳定、格式错误和工具能力缺失。": [
+    {
+      "page": "stage-06",
+      "key": "f3la39"
+    }
+  ],
+  "能判断何时优先使用 prompt、RAG、tool 或 fine-tuning。": [
+    {
+      "page": "stage-06",
+      "key": "1cl92tu"
+    }
+  ],
+  "为训练目标定义可测量指标和 baseline。": [
+    {
+      "page": "stage-06",
+      "key": "1qy1qed"
+    }
+  ],
+  "明确数据许可证、隐私和允许使用范围。": [
+    {
+      "page": "stage-06",
+      "key": "bm14o3"
+    }
+  ],
+  "理解 instruction、input、output 与 chat template。": [
+    {
+      "page": "stage-06",
+      "key": "2nuzpp"
+    }
+  ],
+  "构造、清洗并版本化 instruction dataset。": [
+    {
+      "page": "stage-06",
+      "key": "g13ax"
+    }
+  ],
+  "去重并检查训练集/验证集泄漏。": [
+    {
+      "page": "stage-06",
+      "key": "uc8kj3"
+    }
+  ],
+  "设计训练、验证与测试划分。": [
+    {
+      "page": "stage-06",
+      "key": "pjkmc9"
+    }
+  ],
+  "检查输出长度、类别分布和异常样本。": [
+    {
+      "page": "stage-06",
+      "key": "1xqdplt"
+    }
+  ],
+  "理解 teacher forcing、cross-entropy loss 与 masking。": [
+    {
+      "page": "stage-06",
+      "key": "1untl3b"
+    }
+  ],
+  "使用 Hugging Face Transformers 或等价工具完成一次 SFT。": [
+    {
+      "page": "stage-06",
+      "key": "28o0qb"
+    }
+  ],
+  "保存训练配置、随机种子和数据版本。": [
+    {
+      "page": "stage-06",
+      "key": "ktx7ds"
+    }
+  ],
+  "理解全量微调与 PEFT 的资源差异。": [
+    {
+      "page": "stage-06",
+      "key": "wqw8ea"
+    }
+  ],
+  "理解 LoRA 的 rank、alpha、dropout 与 target modules。": [
+    {
+      "page": "stage-06",
+      "key": "1r7156x"
+    }
+  ],
+  "理解 QLoRA 的量化基座、计算精度与 adapter 训练。": [
+    {
+      "page": "stage-06",
+      "key": "pjebwi"
+    }
+  ],
+  "理解 learning rate、batch size、gradient accumulation、warmup 与 epochs。": [
+    {
+      "page": "stage-06",
+      "key": "g96xx3"
+    }
+  ],
+  "监控 train / eval loss、显存、吞吐与训练时间。": [
+    {
+      "page": "stage-06",
+      "key": "1aibddi"
+    }
+  ],
+  "保存、加载并合并 adapter。": [
+    {
+      "page": "stage-06",
+      "key": "1pi7omp"
+    }
+  ],
+  "验证训练后 chat template 与推理参数一致。": [
+    {
+      "page": "stage-06",
+      "key": "wrx03p"
+    }
+  ],
+  "在训练前固定测试集。": [
+    {
+      "page": "stage-06",
+      "key": "g2x6q0"
+    }
+  ],
+  "比较 base、prompt baseline、LoRA 与 QLoRA。": [
+    {
+      "page": "stage-06",
+      "key": "xju1y5"
+    }
+  ],
+  "检查过拟合、灾难性遗忘和格式退化。": [
+    {
+      "page": "stage-06",
+      "key": "11jv3xl"
+    }
+  ],
+  "做人工盲评或基于 rubric 的成对比较。": [
+    {
+      "page": "stage-06",
+      "key": "1ip8xut"
+    }
+  ],
+  "导出 adapter 和最小推理服务。": [
+    {
+      "page": "stage-06",
+      "key": "1o1ajvk"
+    }
+  ],
+  "编写 model card / data card，记录限制和风险。": [
+    {
+      "page": "stage-06",
+      "key": "xqgapw"
+    }
+  ],
+  "能解释为什么当前任务需要微调而非 RAG。": [
+    {
+      "page": "stage-06",
+      "key": "3obnm6"
+    }
+  ],
+  "同一配置可以复现近似训练曲线和指标。": [
+    {
+      "page": "stage-06",
+      "key": "xx6dv"
+    }
+  ],
+  "微调模型在固定测试集上优于强 prompt baseline，而不是只展示好例子。": [
+    {
+      "page": "stage-06",
+      "key": "12b4h8t"
+    }
+  ],
+  "能从显存和质量角度说明 LoRA 与 QLoRA 的取舍。": [
+    {
+      "page": "stage-06",
+      "key": "8i9qs5"
+    }
+  ],
+  "model card 明确训练数据、适用范围、限制和已知失败模式。": [
+    {
+      "page": "stage-06",
+      "key": "1p10k6f"
+    }
+  ],
+  "记录一个主项目误差案例，判断应优先改 prompt、tool schema、RAG 还是训练，并给出数据依据。": [
+    {
+      "page": "stage-06",
+      "key": "nuico5"
+    }
+  ],
+  "从真实用户任务提炼固定测试集。": [
+    {
+      "page": "stage-07",
+      "key": "h9t729"
+    }
+  ],
+  "覆盖正常、边界、对抗、无答案和工具失败场景。": [
+    {
+      "page": "stage-07",
+      "key": "1drbj6g"
+    }
+  ],
+  "为每类任务定义成功标准与 rubric。": [
+    {
+      "page": "stage-07",
+      "key": "1rqjpdj"
+    }
+  ],
+  "区分最终答案质量、过程质量和工具执行质量。": [
+    {
+      "page": "stage-07",
+      "key": "x46ny1"
+    }
+  ],
+  "测量 task success rate、tool success rate 与 citation correctness。": [
+    {
+      "page": "stage-07",
+      "key": "gb5yff"
+    }
+  ],
+  "记录 latency、token、cost、steps 与 retry count。": [
+    {
+      "page": "stage-07",
+      "key": "1n13o4o"
+    }
+  ],
+  "对非确定输出采用多次运行和置信区间。": [
+    {
+      "page": "stage-07",
+      "key": "1ep30zs"
+    }
+  ],
+  "保存失败样例而不只保存平均分。": [
+    {
+      "page": "stage-07",
+      "key": "wi5525"
+    }
+  ],
+  "建立回归测试，在 prompt / model / tool 变化后自动运行。": [
+    {
+      "page": "stage-07",
+      "key": "12y5rsn"
+    }
+  ],
+  "了解 LLM-as-judge 的位置偏差、长度偏差与自偏好。": [
+    {
+      "page": "stage-07",
+      "key": "ej5kvw"
+    }
+  ],
+  "为每个请求生成 trace id。": [
+    {
+      "page": "stage-07",
+      "key": "nzqjef"
+    }
+  ],
+  "记录模型、prompt/version、工具输入输出与状态转移。": [
+    {
+      "page": "stage-07",
+      "key": "147ga5g"
+    }
+  ],
+  "对敏感字段做脱敏和最小保留。": [
+    {
+      "page": "stage-07",
+      "key": "wieedi"
+    }
+  ],
+  "用结构化日志关联请求、session、tool call 与错误。": [
+    {
+      "page": "stage-07",
+      "key": "k335yq"
+    }
+  ],
+  "建立成功率、P50/P95 延迟、成本和错误类型面板。": [
+    {
+      "page": "stage-07",
+      "key": "11ahtf"
+    }
+  ],
+  "能从一次线上失败追到具体节点与依赖。": [
+    {
+      "page": "stage-07",
+      "key": "wpx0ap"
+    }
+  ],
+  "设置关键指标告警与合理阈值。": [
+    {
+      "page": "stage-07",
+      "key": "7biikj"
+    }
+  ],
+  "建立 prompt、model、dataset 与代码版本关联。": [
+    {
+      "page": "stage-07",
+      "key": "174i4f2"
+    }
+  ],
+  "建立 threat model 与资产清单。": [
+    {
+      "page": "stage-07",
+      "key": "g8as5p"
+    }
+  ],
+  "测试 direct / indirect prompt injection。": [
+    {
+      "page": "stage-07",
+      "key": "8sgcpq"
+    }
+  ],
+  "把外部网页、文档和工具结果视为不可信数据。": [
+    {
+      "page": "stage-07",
+      "key": "v520vm"
+    }
+  ],
+  "为工具实施 allowlist、参数校验和最小权限。": [
+    {
+      "page": "stage-07",
+      "key": "1ktvxc0"
+    }
+  ],
+  "对写文件、发消息、付款、设备控制等副作用要求确认。": [
+    {
+      "page": "stage-07",
+      "key": "13brgu8"
+    }
+  ],
+  "对代码执行使用 sandbox、超时与资源限制。": [
+    {
+      "page": "stage-07",
+      "key": "1t4ws26"
+    }
+  ],
+  "防止 secrets 出现在 prompt、日志和错误信息中。": [
+    {
+      "page": "stage-07",
+      "key": "1ii7w6g"
+    }
+  ],
+  "处理越权访问、跨用户记忆泄漏和数据外传。": [
+    {
+      "page": "stage-07",
+      "key": "xcrisp"
+    }
+  ],
+  "加入 kill switch、预算上限和紧急停止。": [
+    {
+      "page": "stage-07",
+      "key": "17x61r6"
+    }
+  ],
+  "记录安全事件与人工审批审计轨迹。": [
+    {
+      "page": "stage-07",
+      "key": "1e60zlj"
+    }
+  ],
+  "每次重要变更都能在同一测试集上比较前后结果。": [
+    {
+      "page": "stage-07",
+      "key": "1esby46"
+    }
+  ],
+  "能在 10 分钟内从 trace 定位一类失败的根因。": [
+    {
+      "page": "stage-07",
+      "key": "wdo8jq"
+    }
+  ],
+  "所有高风险工具都有权限边界、确认点和审计记录。": [
+    {
+      "page": "stage-07",
+      "key": "1912am9"
+    }
+  ],
+  "测试集包含至少五类安全攻击和工具故障。": [
+    {
+      "page": "stage-07",
+      "key": "zjk3fy"
+    }
+  ],
+  "质量报告同时呈现收益、成本、失败样例与已知限制。": [
+    {
+      "page": "stage-07",
+      "key": "1kbtilj"
+    }
+  ],
+  "建立至少 50 条机械臂任务测试集，记录任务成功率、规划合法率、工具调用准确率、动作失败率、恢复成功率、人工接管次数、延迟与 token cost；写清各指标分母和成功标准。": [
+    {
+      "page": "stage-07",
+      "key": "1tokxw8"
+    }
+  ],
+  "验证 workspace bounds、speed/force limit、human approval、dry-run/simulation-first、不可逆操作保护和紧急停止；限值依据设备配置与实验室规程设定，模型不可修改。": [
+    {
+      "page": "stage-07",
+      "key": "c6f4rh"
+    }
+  ],
+  "覆盖越界请求、状态过期、碰撞风险、执行超时和断连；未满足真机准入条件时保持仿真并记录缺口。": [
+    {
+      "page": "stage-07",
+      "key": "1odpwds"
+    }
+  ],
+  "区分 prefill 与 decode 阶段。": [
+    {
+      "page": "stage-08",
+      "key": "1hz1ch6"
+    }
+  ],
+  "理解 TTFT、TPOT、end-to-end latency 与 throughput。": [
+    {
+      "page": "stage-08",
+      "key": "1lv2yep"
+    }
+  ],
+  "理解 KV cache 为什么占用显存。": [
+    {
+      "page": "stage-08",
+      "key": "lgxm5b"
+    }
+  ],
+  "理解 context length、batch size 与并发的关系。": [
+    {
+      "page": "stage-08",
+      "key": "g0i9qd"
+    }
+  ],
+  "区分模型权重精度、KV cache 精度与计算精度。": [
+    {
+      "page": "stage-08",
+      "key": "1fr714x"
+    }
+  ],
+  "理解量化带来的显存、速度与质量取舍。": [
+    {
+      "page": "stage-08",
+      "key": "teb0z5"
+    }
+  ],
+  "知道 continuous batching 与 paged attention 的作用。": [
+    {
+      "page": "stage-08",
+      "key": "k66x7r"
+    }
+  ],
+  "理解 streaming、stop、sampling 和 chat template。": [
+    {
+      "page": "stage-08",
+      "key": "mvd5d4"
+    }
+  ],
+  "安装并启动一个 vLLM OpenAI-compatible server。": [
+    {
+      "page": "stage-08",
+      "key": "1mme21j"
+    }
+  ],
+  "正确加载 tokenizer、chat template 与模型权重。": [
+    {
+      "page": "stage-08",
+      "key": "1678c3u"
+    }
+  ],
+  "调用 chat / completion API 并流式输出。": [
+    {
+      "page": "stage-08",
+      "key": "1d8s5up"
+    }
+  ],
+  "设置最大上下文、显存利用率与并发限制。": [
+    {
+      "page": "stage-08",
+      "key": "1wdku0y"
+    }
+  ],
+  "运行单请求与多并发 benchmark。": [
+    {
+      "page": "stage-08",
+      "key": "177jzy"
+    }
+  ],
+  "观察 OOM、排队、超时和取消行为。": [
+    {
+      "page": "stage-08",
+      "key": "1wi6x77"
+    }
+  ],
+  "部署 Stage 6 的 adapter 或合并模型。": [
+    {
+      "page": "stage-08",
+      "key": "xh75nr"
+    }
+  ],
+  "为服务加入 health check、日志与基本指标。": [
+    {
+      "page": "stage-08",
+      "key": "14iars9"
+    }
+  ],
+  "理解 GPU memory、compute、memory bandwidth 的基本关系。": [
+    {
+      "page": "stage-08",
+      "key": "7uettl"
+    }
+  ],
+  "能使用系统工具观察 GPU 利用率、显存和功耗。": [
+    {
+      "page": "stage-08",
+      "key": "14k3r5d"
+    }
+  ],
+  "理解 tensor parallel、pipeline parallel 与 data parallel 的用途。": [
+    {
+      "page": "stage-08",
+      "key": "1o5eg6s"
+    }
+  ],
+  "知道模型加载、冷启动与权重缓存的成本。": [
+    {
+      "page": "stage-08",
+      "key": "1a21hqm"
+    }
+  ],
+  "使用 Docker 固化运行环境。": [
+    {
+      "page": "stage-08",
+      "key": "o1zlig"
+    }
+  ],
+  "理解 API gateway、鉴权、rate limit 和 autoscaling 的位置。": [
+    {
+      "page": "stage-08",
+      "key": "16zqrcg"
+    }
+  ],
+  "估算一次请求的 token 成本和服务容量。": [
+    {
+      "page": "stage-08",
+      "key": "1idph5v"
+    }
+  ],
+  "为模型不可用设计超时、fallback 与降级。": [
+    {
+      "page": "stage-08",
+      "key": "ga4s4t"
+    }
+  ],
+  "固定模型、硬件、数据集与推理参数。": [
+    {
+      "page": "stage-08",
+      "key": "ljq7nf"
+    }
+  ],
+  "比较不同并发、上下文长度与输出长度。": [
+    {
+      "page": "stage-08",
+      "key": "qt0qfp"
+    }
+  ],
+  "比较至少一种量化与未量化结果。": [
+    {
+      "page": "stage-08",
+      "key": "p0qeoy"
+    }
+  ],
+  "同时报告 P50/P95、TTFT、tokens/s、显存与质量变化。": [
+    {
+      "page": "stage-08",
+      "key": "uyvgdz"
+    }
+  ],
+  "避免只报告峰值吞吐而忽略尾延迟。": [
+    {
+      "page": "stage-08",
+      "key": "1553lzr"
+    }
+  ],
+  "另一个人可以用 README 启动兼容 API 的推理服务。": [
+    {
+      "page": "stage-08",
+      "key": "n09k"
+    }
+  ],
+  "能解释一次请求的 prefill、decode 与 KV cache 开销。": [
+    {
+      "page": "stage-08",
+      "key": "i4tqjg"
+    }
+  ],
+  "benchmark 可重复，并同时报告延迟、吞吐、显存和质量。": [
+    {
+      "page": "stage-08",
+      "key": "9rvd9s"
+    }
+  ],
+  "面对 OOM 或高尾延迟，能提出有依据的调参顺序。": [
+    {
+      "page": "stage-08",
+      "key": "14vqxf2"
+    }
+  ],
+  "Agent 可切换远程 API 与本地 vLLM，而不改核心业务逻辑。": [
+    {
+      "page": "stage-08",
+      "key": "1pf7vco"
+    }
+  ],
+  "让主项目通过统一接口切换 API 模型与本地/服务器 vLLM，在同一任务集比较延迟、成本、工具调用质量与任务成功率。": [
+    {
+      "page": "stage-08",
+      "key": "1qv5ore"
+    }
+  ],
+  "记录 TTFT、throughput、KV cache/显存、并发和量化取舍；模型不可用时停止新动作或安全降级。": [
+    {
+      "page": "stage-08",
+      "key": "1ffu5gk"
+    }
+  ],
+  "区分 DOM / accessibility tree、视觉截图与坐标操作。": [
+    {
+      "page": "stage-09",
+      "key": "72qw66"
+    }
+  ],
+  "优先使用语义定位，必要时才使用坐标。": [
+    {
+      "page": "stage-09",
+      "key": "187np7n"
+    }
+  ],
+  "实现 open、click、type、select、scroll、back 与 wait。": [
+    {
+      "page": "stage-09",
+      "key": "174o6c9"
+    }
+  ],
+  "每次动作后读取新状态，验证动作是否生效。": [
+    {
+      "page": "stage-09",
+      "key": "1njzsr5"
+    }
+  ],
+  "处理动态加载、弹窗、iframe 与多标签页。": [
+    {
+      "page": "stage-09",
+      "key": "1d67bbp"
+    }
+  ],
+  "为下载和上传建立明确文件边界。": [
+    {
+      "page": "stage-09",
+      "key": "qwtgtr"
+    }
+  ],
+  "保存关键步骤截图或状态摘要用于复盘。": [
+    {
+      "page": "stage-09",
+      "key": "14xugdx"
+    }
+  ],
+  "把任务拆成可验证的小步骤。": [
+    {
+      "page": "stage-09",
+      "key": "1l6wrr2"
+    }
+  ],
+  "区分导航失败、元素定位失败、权限失败和业务规则失败。": [
+    {
+      "page": "stage-09",
+      "key": "sv70rs"
+    }
+  ],
+  "设置最大步骤数、时间预算和站点范围。": [
+    {
+      "page": "stage-09",
+      "key": "15d197b"
+    }
+  ],
+  "当界面变化时重新观察，不盲目重复点击。": [
+    {
+      "page": "stage-09",
+      "key": "stov9s"
+    }
+  ],
+  "支持从 checkpoint 恢复任务。": [
+    {
+      "page": "stage-09",
+      "key": "12ci2ou"
+    }
+  ],
+  "对不可逆动作提供预览和人工确认。": [
+    {
+      "page": "stage-09",
+      "key": "152y313"
+    }
+  ],
+  "对登录、验证码和安全拦截设计安全交接。": [
+    {
+      "page": "stage-09",
+      "key": "17lm205"
+    }
+  ],
+  "把网页中的文本视为不可信内容，而非 Agent 指令。": [
+    {
+      "page": "stage-09",
+      "key": "175opv7"
+    }
+  ],
+  "测试网页中的 indirect prompt injection。": [
+    {
+      "page": "stage-09",
+      "key": "lgietv"
+    }
+  ],
+  "禁止网页诱导 Agent 读取本地 secrets 或无关数据。": [
+    {
+      "page": "stage-09",
+      "key": "fbga7w"
+    }
+  ],
+  "限制允许访问的域名、页面和账户。": [
+    {
+      "page": "stage-09",
+      "key": "gjlqlo"
+    }
+  ],
+  "输入敏感信息前要求明确确认并说明目的地。": [
+    {
+      "page": "stage-09",
+      "key": "zrfs9u"
+    }
+  ],
+  "发送消息、发布内容、付款和删除前要求确认。": [
+    {
+      "page": "stage-09",
+      "key": "13yql3i"
+    }
+  ],
+  "记录动作、确认人、时间与结果。": [
+    {
+      "page": "stage-09",
+      "key": "bk1j4t"
+    }
+  ],
+  "对任务结束后的标签页、下载文件和临时数据进行清理。": [
+    {
+      "page": "stage-09",
+      "key": "1ratl71"
+    }
+  ],
+  "构建固定网页任务集，覆盖搜索、表单、跨页和信息提取。": [
+    {
+      "page": "stage-09",
+      "key": "wtz5d3"
+    }
+  ],
+  "记录 task success、step success、recovery rate 与人工接管率。": [
+    {
+      "page": "stage-09",
+      "key": "1ost9un"
+    }
+  ],
+  "测量步骤数、延迟和 token / vision 成本。": [
+    {
+      "page": "stage-09",
+      "key": "6kf8cy"
+    }
+  ],
+  "在页面轻微变化后运行鲁棒性测试。": [
+    {
+      "page": "stage-09",
+      "key": "x5wbf6"
+    }
+  ],
+  "把最终状态验证与“点击过按钮”区分开。": [
+    {
+      "page": "stage-09",
+      "key": "14vlf16"
+    }
+  ],
+  "Agent 不以“已点击”为成功，而以页面最终状态为成功。": [
+    {
+      "page": "stage-09",
+      "key": "4nn16t"
+    }
+  ],
+  "页面小改动时能够重新观察并恢复，而不是持续误操作。": [
+    {
+      "page": "stage-09",
+      "key": "ngnq69"
+    }
+  ],
+  "对登录、敏感输入和外部副作用都有明确交接点。": [
+    {
+      "page": "stage-09",
+      "key": "d1gi0p"
+    }
+  ],
+  "网页 prompt injection 无法诱导 Agent 越权读取或发送数据。": [
+    {
+      "page": "stage-09",
+      "key": "1x9ed7k"
+    }
+  ],
+  "固定任务集有可量化的成功率、恢复率和人工接管率。": [
+    {
+      "page": "stage-09",
+      "key": "teo6hr"
+    }
+  ],
+  "在独立 Browser Sandbox 中完成设备文档检索与带引用报告，说明其与主项目的接口边界。": [
+    {
+      "page": "stage-09",
+      "key": "161hum3"
+    }
+  ],
+  "选择一个与你的专业背景或目标岗位强相关的问题。": [
+    {
+      "page": "stage-10",
+      "key": "wf1fhl"
+    }
+  ],
+  "访谈或模拟真实用户，写清使用场景和痛点。": [
+    {
+      "page": "stage-10",
+      "key": "jnh2zb"
+    }
+  ],
+  "定义非目标，避免项目无限膨胀。": [
+    {
+      "page": "stage-10",
+      "key": "qhtodw"
+    }
+  ],
+  "证明为什么需要 Agent，而不是简单脚本或 workflow。": [
+    {
+      "page": "stage-10",
+      "key": "98f0m3"
+    }
+  ],
+  "定义核心任务、用户旅程和成功指标。": [
+    {
+      "page": "stage-10",
+      "key": "3ltknu"
+    }
+  ],
+  "先做最小 baseline，再逐步增加复杂度。": [
+    {
+      "page": "stage-10",
+      "key": "nv777b"
+    }
+  ],
+  "画出组件、数据流、信任边界与部署图。": [
+    {
+      "page": "stage-10",
+      "key": "13qj7v6"
+    }
+  ],
+  "选择 single-agent 或 multi-agent，并写出理由。": [
+    {
+      "page": "stage-10",
+      "key": "egkxd9"
+    }
+  ],
+  "设计 Tool / RAG / Memory 的职责和接口。": [
+    {
+      "page": "stage-10",
+      "key": "1kjupjs"
+    }
+  ],
+  "通过 Skill 封装一项可复用流程。": [
+    {
+      "page": "stage-10",
+      "key": "ra732h"
+    }
+  ],
+  "通过 MCP 暴露或接入至少一组外部能力。": [
+    {
+      "page": "stage-10",
+      "key": "rp9tj9"
+    }
+  ],
+  "使用 Harness / LangGraph 管理状态、重试和中断。": [
+    {
+      "page": "stage-10",
+      "key": "dng672"
+    }
+  ],
+  "设计模型路由、fallback 与本地/云端推理选择。": [
+    {
+      "page": "stage-10",
+      "key": "kcpneh"
+    }
+  ],
+  "设计数据库 schema、会话隔离与数据保留策略。": [
+    {
+      "page": "stage-10",
+      "key": "mnkinm"
+    }
+  ],
+  "为高风险工具设置权限、确认和审计。": [
+    {
+      "page": "stage-10",
+      "key": "1ip8iin"
+    }
+  ],
+  "提供后端 API 与清晰的交互界面或 CLI。": [
+    {
+      "page": "stage-10",
+      "key": "1uzjzpw"
+    }
+  ],
+  "使用 Docker 运行核心服务。": [
+    {
+      "page": "stage-10",
+      "key": "vg9f3c"
+    }
+  ],
+  "建立 lint、test、build 与 deploy CI。": [
+    {
+      "page": "stage-10",
+      "key": "1gr8hke"
+    }
+  ],
+  "管理配置、secret、migration 与版本。": [
+    {
+      "page": "stage-10",
+      "key": "sr52e8"
+    }
+  ],
+  "加入健康检查、结构化日志、trace、metrics 与告警。": [
+    {
+      "page": "stage-10",
+      "key": "rrmtp1"
+    }
+  ],
+  "为超时、限流、依赖失败和预算耗尽设计降级。": [
+    {
+      "page": "stage-10",
+      "key": "1irdras"
+    }
+  ],
+  "编写单元、集成、端到端与安全测试。": [
+    {
+      "page": "stage-10",
+      "key": "1rsmgvs"
+    }
+  ],
+  "准备一键启动或最少步骤部署方案。": [
+    {
+      "page": "stage-10",
+      "key": "1efom2w"
+    }
+  ],
+  "建立至少 50–100 条代表性任务。": [
+    {
+      "page": "stage-10",
+      "key": "o7bafh"
+    }
+  ],
+  "记录成功率、引用、工具错误、延迟、成本和人工接管率。": [
+    {
+      "page": "stage-10",
+      "key": "138d6re"
+    }
+  ],
+  "与 non-agent baseline 比较。": [
+    {
+      "page": "stage-10",
+      "key": "cbhz61"
+    }
+  ],
+  "做 ablation：去掉 Memory、Reviewer 或某个工具后比较结果。": [
+    {
+      "page": "stage-10",
+      "key": "cmhatq"
+    }
+  ],
+  "选择三类最常见失败，修复并加入回归测试。": [
+    {
+      "page": "stage-10",
+      "key": "1uxlesr"
+    }
+  ],
+  "进行 prompt injection、越权、数据泄漏和危险动作测试。": [
+    {
+      "page": "stage-10",
+      "key": "g5t9tp"
+    }
+  ],
+  "写清已知限制、风险和后续路线。": [
+    {
+      "page": "stage-10",
+      "key": "1xn3t9u"
+    }
+  ],
+  "README 首屏说明问题、价值、Demo 和核心指标。": [
+    {
+      "page": "stage-10",
+      "key": "e4tc9g"
+    }
+  ],
+  "提供架构图、执行 trace、截图或短视频。": [
+    {
+      "page": "stage-10",
+      "key": "1h97foq"
+    }
+  ],
+  "提供可复现安装与示例数据。": [
+    {
+      "page": "stage-10",
+      "key": "1oyp36a"
+    }
+  ],
+  "记录关键技术取舍，而不是罗列技术名词。": [
+    {
+      "page": "stage-10",
+      "key": "w3rcx2"
+    }
+  ],
+  "写一篇项目复盘：最难问题、失败、权衡与结果。": [
+    {
+      "page": "stage-10",
+      "key": "19lehgt"
+    }
+  ],
+  "把量化结果整理成 2–3 条可验证的简历 bullet。": [
+    {
+      "page": "stage-10",
+      "key": "14eqe4i"
+    }
+  ],
+  "准备 5 分钟 Demo 和 15 分钟技术讲解。": [
+    {
+      "page": "stage-10",
+      "key": "3d36mb"
+    }
+  ],
+  "新用户按 README 能在 30 分钟内运行核心流程。": [
+    {
+      "page": "stage-10",
+      "key": "16oppci"
+    }
+  ],
+  "项目在固定测试集上有明确结果，并优于合理 baseline。": [
+    {
+      "page": "stage-10",
+      "key": "vdwum6"
+    }
+  ],
+  "一次任务可从用户请求追踪到每个工具调用、证据和最终结果。": [
+    {
+      "page": "stage-10",
+      "key": "4k7zzb"
+    }
+  ],
+  "高风险动作默认禁止或要求明确确认，且有审计记录。": [
+    {
+      "page": "stage-10",
+      "key": "17xd51g"
+    }
+  ],
+  "能用 5 分钟讲清问题、架构、指标、取舍和失败复盘。": [
+    {
+      "page": "stage-10",
+      "key": "1k87g1r"
+    }
+  ],
+  "招聘者可以从仓库直接验证简历中的核心结论。": [
+    {
+      "page": "stage-10",
+      "key": "1y9t6f8"
+    }
+  ],
+  "跑通自然语言/结构化任务 → Agent Planner → RAG/Skills → Robot tools/MCP → motion planning → execution → observation → recovery → final report。": [
+    {
+      "page": "stage-10",
+      "key": "eixfgk"
+    }
+  ],
+  "README 提供架构图、demo 视频/GIF、部署说明、Eval Report、Safety Design、Known Limitations，并给出至少一个失败恢复演示。": [
+    {
+      "page": "stage-10",
+      "key": "88y0e4"
+    }
+  ],
+  "复用 Stage 7 测试集扩充至 50–100 条，提供 baseline、消融、版本信息和可验证的求职成果。": [
+    {
+      "page": "stage-10",
+      "key": "1x213je"
+    }
+  ]
+}

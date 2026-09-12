@@ -1,82 +1,49 @@
-# Stage 7 · Eval + Observability + Safety
+# Stage 7 · VLA / 模仿学习 / Post-training（Advanced / Optional）
 
-## 目标
+## 定位与进入条件 · Advanced / Optional
 
-围绕 UR7e 具身 Agent 推进本阶段能力。
+本阶段不阻塞 Stage 8–9。只有 v1.5 稳定、具备相机与示教采集条件、训练算力和时间时，才交付 **v2.0**。项目采用 Classical Skill 与 VLA Skill 并存；VLA 失败能退回已验证的经典技能。
 
-建立从离线测试到线上追踪的质量闭环。把“看起来能跑”变成可以测量、定位、回归和安全控制的 Agent 系统。
+## 步骤 1 · Post-training 基础 → 理解训练闭环
 
-## Todo
+- [ ] 理解 SFT / Instruction Dataset / PEFT / LoRA / QLoRA / Quantization。 <span data-task-id="s07-t000"></span>
+- [ ] 理解 train-val 划分、LR、batch、grad accumulation、overfitting 与 eval。 <span data-task-id="s07-t001"></span>
+- [ ] 能解释量化推理与 QLoRA 训练的区别，估算显存与数据需求。 <span data-task-id="s07-t002"></span>
+- [ ] 对 DPO / RLHF / PPO / GRPO 只建立概念地图，暂不实现算法。 <span data-task-id="s07-t003"></span>
 
-### Eval 设计
+项目同步：为机器人任务准备小型数据样例与训练配置说明，普通独立 LoRA Demo 放在 Later；此处学习服务后续策略数据与训练。
 
-- [ ] 从真实用户任务提炼固定测试集。
-- [ ] 覆盖正常、边界、对抗、无答案和工具失败场景。
-- [ ] 为每类任务定义成功标准与 rubric。
-- [ ] 区分最终答案质量、过程质量和工具执行质量。
-- [ ] 测量 task success rate、tool success rate 与 citation correctness。
-- [ ] 记录 latency、token、cost、steps 与 retry count。
-- [ ] 对非确定输出采用多次运行和置信区间。
-- [ ] 保存失败样例而不只保存平均分。
-- [ ] 建立回归测试，在 prompt / model / tool 变化后自动运行。
-- [ ] 了解 LLM-as-judge 的位置偏差、长度偏差与自偏好。
+## 步骤 2 · 模仿学习 → 任务数据定义
 
-### Observability
+- [ ] 理解 imitation learning / demonstration / episode / observation / action / policy / behavior cloning。 <span data-task-id="s07-t004"></span>
+- [ ] 理解 VLM 与 VLA 的输入输出差异，以及动作表示、频率与坐标系。 <span data-task-id="s07-t005"></span>
+- [ ] 定义一个固定抓取任务的 observation、action、成功条件与重置流程。 <span data-task-id="s07-t006"></span>
 
-- [ ] 为每个请求生成 trace id。
-- [ ] 记录模型、prompt/version、工具输入输出与状态转移。
-- [ ] 对敏感字段做脱敏和最小保留。
-- [ ] 用结构化日志关联请求、session、tool call 与错误。
-- [ ] 建立成功率、P50/P95 延迟、成本和错误类型面板。
-- [ ] 能从一次线上失败追到具体节点与依赖。
-- [ ] 设置关键指标告警与合理阈值。
-- [ ] 建立 prompt、model、dataset 与代码版本关联。
+项目同步：先确认所选策略、机器人接口、夹爪和相机能兼容，不假设 UR7e 与某模型即插即用。
 
-### Safety
+## 步骤 3 · LeRobot 数据 → 采集、同步与清洗
 
-- [ ] 建立 threat model 与资产清单。
-- [ ] 测试 direct / indirect prompt injection。
-- [ ] 把外部网页、文档和工具结果视为不可信数据。
-- [ ] 为工具实施 allowlist、参数校验和最小权限。
-- [ ] 对写文件、发消息、付款、设备控制等副作用要求确认。
-- [ ] 对代码执行使用 sandbox、超时与资源限制。
-- [ ] 防止 secrets 出现在 prompt、日志和错误信息中。
-- [ ] 处理越权访问、跨用户记忆泄漏和数据外传。
-- [ ] 加入 kill switch、预算上限和紧急停止。
-- [ ] 记录安全事件与人工审批审计轨迹。
+- [ ] 阅读并实现所固定版本的 LeRobot 数据格式与元数据。 <span data-task-id="s07-t007"></span>
+- [ ] 采集 camera + joint state + action + task instruction，并记录时间戳和 episode 边界。 <span data-task-id="s07-t008"></span>
+- [ ] 检查相机、关节状态与动作同步，处理丢帧、单位与控制频率差异。 <span data-task-id="s07-t009"></span>
+- [ ] 清洗失败示教、错误标注和重置片段，记录质量标准。 <span data-task-id="s07-t010"></span>
+- [ ] 按 episode / 采集条件划分训练与验证集，避免相邻帧泄漏。 <span data-task-id="s07-t011"></span>
+- [ ] 离线 replay，核对图像、动作、轨迹与任务标签后再训练。 <span data-task-id="s07-t012"></span>
 
-## 阶段产出
+## 步骤 4 · 策略训练与部署 → VLA Skill
 
-为 UR7e 主项目建立至少 50 条用例的 Eval Suite，以及包含 trace、具身任务指标、失败分类和安全测试的质量报告。修复三类真实失败，并用回归测试证明未重新出现。
+- [ ] 条件允许时验证 UR7e + RealSense + LeRobot + SmolVLA 适配，固定版本与动作转换。 <span data-task-id="s07-t013"></span>
+- [ ] 跑通 train / validation / inference，比较未训练基线与微调结果。 <span data-task-id="s07-t014"></span>
+- [ ] 在仿真或受控环境验证动作范围、频率、延迟与停止策略，再做受监督真机测试。 <span data-task-id="s07-t015"></span>
+- [ ] 将策略封装为 VLA Skill，保留 Safety Layer、Motion Approval 与 Classical Skill fallback。 <span data-task-id="s07-t016"></span>
 
-## 暂不深入
+## 产出与完成判据 · v2.0（可选）
 
-- 以单一自动裁判分数替代人工检查
-- 收集完整用户数据“以后再说”
-- 复杂红队平台和企业级 SIEM 集成
-- 只测最终文本、不测工具副作用
+- [ ] 发布数据卡、同步检查、训练配置、模型版本、评测与失败案例。 <span data-task-id="s07-t017"></span>
+- [ ] 同一任务对比 Classical Skill 与 VLA Skill 的成功率、延迟和适用边界。 <span data-task-id="s07-t018"></span>
+- [ ] 演示数据 → 策略 → 真机闭环；若只完成推理，则明确未做微调，不能宣称训练完成。 <span data-task-id="s07-t019"></span>
 
-## 学习完成判据
-
-- [ ] 每次重要变更都能在同一测试集上比较前后结果。
-- [ ] 能在 10 分钟内从 trace 定位一类失败的根因。
-- [ ] 所有高风险工具都有权限边界、确认点和审计记录。
-- [ ] 测试集包含至少五类安全攻击和工具故障。
-- [ ] 质量报告同时呈现收益、成本、失败样例与已知限制。
-
-## 长期项目演进 · 主项目质量门槛 · Eval 与真机 Safety
-
-当前必做：评测对象是 UR7e 主项目，不是上一阶段独立微调实验。安全约束从 V0 起逐步实现，本阶段集中验证；真机需实验室环境与设备负责人允许。
-
-### 当前必做（旁支阶段在独立实验中完成）
-
-- [ ] 建立至少 50 条机械臂任务测试集，记录任务成功率、规划合法率、工具调用准确率、动作失败率、恢复成功率、人工接管次数、延迟与 token cost；写清各指标分母和成功标准。
-- [ ] 验证 workspace bounds、speed/force limit、human approval、dry-run/simulation-first、不可逆操作保护和紧急停止；限值依据设备配置与实验室规程设定，模型不可修改。
-- [ ] 覆盖越界请求、状态过期、碰撞风险、执行超时和断连；未满足真机准入条件时保持仿真并记录缺口。
-
-### 阶段产出 / 完成判据
-
-交付 Eval Report 与 Safety Design，记录仿真/真机环境、失败分类、回归结果和人工接管日志；软件检查不能替代设备本身的安全机制。
+数据质量优先于模型复杂度。条件不足时记录跳过原因，带着 v1.5 进入 Stage 8。
 
 
-[← Stage 6](stage-06.md) · [下一阶段：Inference / vLLM / Infra →](stage-08.md)
+[← Stage 6](stage-06.md) · [路线总览](index.md) · [Stage 8 →](stage-08.md)

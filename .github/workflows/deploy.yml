@@ -32,7 +32,11 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build site
-        run: mkdocs build --strict
+        run: |
+          python scripts/build_progress.py
+          git diff --exit-code -- docs/assets/javascripts/progress-data.js
+          mkdocs build --strict
+          python scripts/check_progress.py
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

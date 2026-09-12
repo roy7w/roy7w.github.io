@@ -1,84 +1,56 @@
-# Stage 9 · Browser / Computer Use
+# Stage 9 · Production / Portfolio / 求职
 
-## 目标
+## 目标与项目组合
 
-本阶段作为独立增强实验推进，不强制接入机器人主项目。
+沿用 Agent-Learning-Hub 的 Ship 思路，完成 **1+1 求职项目组合**：核心 **UR7e Embodied AI Agent**，增强 **Embodied AI Inference Optimization**。第二个可作为主项目性能优化子项目，不要求新建独立仓库。
 
-让 Agent 在浏览器或桌面环境中可靠完成多步任务；重点掌握感知、动作、验证、恢复、权限和注入防护，而不是追求“能自动点击”的演示。
+## 步骤 1 · 整理工程 → 可复现交付
 
-## Todo
+- [ ] 建议核心项目命名 ur7e-embodied-agent，按职责组织现有代码。 <span data-task-id="s09-t000"></span>
+- [ ] 固定依赖、环境变量示例、模型与硬件版本，提供 Mock 和真机启动路径。 <span data-task-id="s09-t001"></span>
+- [ ] 提供测试、评测、部署与日志说明，移除凭证和私人数据。 <span data-task-id="s09-t002"></span>
+- [ ] 按 v0.1 → v0.2 → v0.3 → v1.0 → v1.1 → v1.5 → 可选 v2.0 → v2.5 整理 tag 和演进记录。 <span data-task-id="s09-t003"></span>
 
-### 感知与动作
+```text
+ur7e-embodied-agent/
+├── agent/
+├── robot/
+├── mcp/
+├── skills/
+├── rag/
+├── safety/
+├── eval/
+├── deployment/
+└── docs/
+```
 
-- [ ] 区分 DOM / accessibility tree、视觉截图与坐标操作。
-- [ ] 优先使用语义定位，必要时才使用坐标。
-- [ ] 实现 open、click、type、select、scroll、back 与 wait。
-- [ ] 每次动作后读取新状态，验证动作是否生效。
-- [ ] 处理动态加载、弹窗、iframe 与多标签页。
-- [ ] 为下载和上传建立明确文件边界。
-- [ ] 保存关键步骤截图或状态摘要用于复盘。
+这是机器人项目的建议结构；当前个人技术博客继续使用既有仓库，不因路线重构另建博客。
 
-### 规划与恢复
+## 步骤 2 · README → 面向陌生读者说明能力
 
-- [ ] 把任务拆成可验证的小步骤。
-- [ ] 区分导航失败、元素定位失败、权限失败和业务规则失败。
-- [ ] 设置最大步骤数、时间预算和站点范围。
-- [ ] 当界面变化时重新观察，不盲目重复点击。
-- [ ] 支持从 checkpoint 恢复任务。
-- [ ] 对不可逆动作提供预览和人工确认。
-- [ ] 对登录、验证码和安全拦截设计安全交接。
+- [ ] 写明 Problem / Architecture / Demo / Safety / Agent Design。 <span data-task-id="s09-t004"></span>
+- [ ] 写明 ROS2 / MCP / Evaluation / Failure Cases / Latency / Deployment / Known Limitations。 <span data-task-id="s09-t005"></span>
+- [ ] 提供成功任务、安全拒绝与失败恢复视频，注明真机或仿真条件。 <span data-task-id="s09-t006"></span>
+- [ ] 展示 Task success、Planning success、Execution failure、Average latency、Unsafe-command rejection 与 Recovery success。 <span data-task-id="s09-t007"></span>
+- [ ] 复用 Stage 6 指标定义，附样本量、版本、环境、原始结果与复现入口。 <span data-task-id="s09-t008"></span>
 
-### 安全与隐私
+项目同步：让读者从一个任务输入追到高层计划、审批、MoveIt2 执行与反馈，并看到失败是如何发现和处理的。
 
-- [ ] 把网页中的文本视为不可信内容，而非 Agent 指令。
-- [ ] 测试网页中的 indirect prompt injection。
-- [ ] 禁止网页诱导 Agent 读取本地 secrets 或无关数据。
-- [ ] 限制允许访问的域名、页面和账户。
-- [ ] 输入敏感信息前要求明确确认并说明目的地。
-- [ ] 发送消息、发布内容、付款和删除前要求确认。
-- [ ] 记录动作、确认人、时间与结果。
-- [ ] 对任务结束后的标签页、下载文件和临时数据进行清理。
+## 步骤 3 · Portfolio → 1+1 项目叙事
 
-### 评测
+- [ ] 核心项目说明 LLM/Agent 与真实物理系统的工程连接、约束、规划和失败恢复。 <span data-task-id="s09-t009"></span>
+- [ ] 优化子项目说明部署约束、测量方法、优化前后差异与质量损失。 <span data-task-id="s09-t010"></span>
+- [ ] 用真实指标写简历，不把预期收益、仿真结果或未完成 VLA 写成真机成果。 <span data-task-id="s09-t011"></span>
+- [ ] 准备架构取舍、为什么不用 Multi-Agent、何时用 VLA、如何防止危险动作等面试回答。 <span data-task-id="s09-t012"></span>
+- [ ] 由另一位读者按 README 从干净环境跑通 Mock Demo，并记录真机所需条件。 <span data-task-id="s09-t013"></span>
 
-- [ ] 构建固定网页任务集，覆盖搜索、表单、跨页和信息提取。
-- [ ] 记录 task success、step success、recovery rate 与人工接管率。
-- [ ] 测量步骤数、延迟和 token / vision 成本。
-- [ ] 在页面轻微变化后运行鲁棒性测试。
-- [ ] 把最终状态验证与“点击过按钮”区分开。
+## 完成判据
 
-## 阶段产出
+- [ ] 项目可演示、可复现、可评测；失败案例与已知局限公开可查。 <span data-task-id="s09-t014"></span>
+- [ ] 博客路线、项目 README、Demo 和简历指标一致，并链接到实际发布的版本。 <span data-task-id="s09-t015"></span>
+- [ ] 核心具身 Agent + 推理优化形成完整作品组合，再评估是否进入 Later。 <span data-task-id="s09-t016"></span>
 
-完成一个 Browser Research Agent：它能在允许站点内检索多个来源、提取证据、生成带引用报告，并在任何发布、上传或外部副作用之前停下来请求确认。
-
-附带至少 20 个浏览器任务、运行录像或关键截图、失败分类与安全测试报告。
-
-## 暂不深入
-
-- 绕过 CAPTCHA、登录保护、付费墙或安全警告
-- 在生产账户上做不可逆实验
-- 依赖固定坐标完成所有操作
-- 无范围限制的桌面自动化
-
-## 学习完成判据
-
-- [ ] Agent 不以“已点击”为成功，而以页面最终状态为成功。
-- [ ] 页面小改动时能够重新观察并恢复，而不是持续误操作。
-- [ ] 对登录、敏感输入和外部副作用都有明确交接点。
-- [ ] 网页 prompt injection 无法诱导 Agent 越权读取或发送数据。
-- [ ] 固定任务集有可量化的成功率、恢复率和人工接管率。
-
-## 长期项目演进 · 旁支 · Browser / Computer Use
-
-本阶段保留为独立求职能力实验，与 UR7e 运行链路解耦，不阻塞主项目 Production。可用于实验设备文档检索、网页流程自动化，不通过浏览器绕过机器人工具权限。
-
-### 当前必做（旁支阶段在独立实验中完成）
-
-- [ ] 在独立 Browser Sandbox 中完成设备文档检索与带引用报告，说明其与主项目的接口边界。
-
-### 阶段产出 / 完成判据
-
-交付旁支 demo 与网页任务评测；主项目保持 V5。暂不把桌面自动化接入机械臂执行链。
+通用 Agent 项目暂不做，后续有余力再补；Multi-Agent / Browser 也保持 Later，不阻塞当前交付。
 
 
-[← Stage 8](stage-08.md) · [下一阶段：Production Project →](stage-10.md)
+[← Stage 8](stage-08.md) · [路线总览](index.md) · [Later / Optional →](later.md)
