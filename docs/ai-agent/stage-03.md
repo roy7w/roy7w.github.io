@@ -2,6 +2,8 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 理解现代 Agent Harness 如何管理状态、工具、上下文、权限和追踪；选一个主框架把前两阶段的 demo 升级成可维护的后端服务。
 
 ## Todo
@@ -53,17 +55,7 @@ START → Planner → Search → Enough evidence?
 
 ## 阶段产出
 
-把 Research Agent 升级为 Docker 化服务：
-
-```text
-Client → FastAPI → Agent Harness / LangGraph
-                      ├── RAG
-                      ├── Search
-                      ├── Python
-                      └── Session Database
-```
-
-支持流式响应、任务恢复、持久化会话、错误追踪和最小权限配置。
+把 UR7e Agent 升级为 Docker 化 V2 服务：Client → FastAPI → LangGraph → RAG / Robot Tools / Session Database。支持流式响应、显式状态机、任务恢复、持久化会话、错误追踪和最小权限配置。
 
 ## 暂不深入
 
@@ -79,5 +71,19 @@ Client → FastAPI → Agent Harness / LangGraph
 - [ ] API schema、失败响应、流式输出与会话隔离均有测试。
 - [ ] 新环境能用一个明确命令启动完整服务。
 - [ ] 能从 trace 定位一次真实失败并写出复盘。
+
+## 长期项目演进 · V2 · 显式状态机与仿真
+
+当前必做：FastAPI + LangGraph 管理 plan → validate → execute → observe → recover。沿用 Docker、异常处理和持久化能力，优先在仿真中跑通。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 实现超时、有限恢复与 human approval；执行前校验计划，中断恢复时重新查询状态，避免重复执行动作。
+- [ ] 完成 ROS2 入门最小示例：Node/Topic/Service/Action；理解 TF 坐标关系及 MoveIt2 planning scene/trajectory，并演示一次仿真规划。
+
+### 阶段产出 / 完成判据
+
+交付 V2：状态转移图、服务启动说明，以及超时、拒绝审批、恢复执行的可复现 trace。
+
 
 [← Stage 2](stage-02.md) · [下一阶段：Skills / MCP →](stage-04.md)

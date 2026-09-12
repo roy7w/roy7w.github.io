@@ -2,11 +2,13 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 不依赖高级 Agent 框架，从零实现一个可观察、可限制、可恢复的最小 Agent Loop，真正理解模型如何选择并调用工具。
 
 ## 与长期项目的关系
 
-本阶段采用“微项目与主项目合一”的方式：先把 Calculator Agent 等最小实验组合成一个约 100–300 行的 Minimal Agent，再将它作为 Research Agent 主项目的第一版内核。完成后打 `stage-1` tag；Stage 2 不重写项目，而是在这份代码上加入 RAG、Memory 和更真实的研究工具。
+从本阶段开始建设 UR7e 具身 Agent V0，后续持续复用同一内核；通用工具只作为最小协议练习。
 
 [查看完整项目演化方案](../projects/index.md)
 
@@ -65,15 +67,7 @@ while step < max_steps:
 
 ## 阶段产出
 
-一个约 100–300 行的 Minimal Agent：
-
-```text
-User → LLM → Tool Selection → Tool Execution
-  ↑                                  ↓
-  └──────── Final Answer ← Observation
-```
-
-仓库包含代码、测试、示例 trace、架构图和 README。示例任务应能读取本地数据、计算统计量并总结结果。这个产出同时作为长期 Research Agent 的 `stage-1` 版本。
+一个约 100–300 行的 Minimal Agent 内核及 UR7e 模拟工具适配层，包含代码、测试、示例 trace、架构图和 README。作为长期项目 V0，验证自然语言指令到模拟动作及 observation 的闭环。代码行数仅作参考。
 
 ## 暂不深入
 
@@ -88,5 +82,19 @@ User → LLM → Tool Selection → Tool Execution
 - [ ] Agent 在测试集中能够正确完成至少 8/10 个基础任务。
 - [ ] 超时、未知工具、非法参数和死循环都有可复现测试。
 - [ ] 任意一次执行都能从 trace 中定位模型决策、工具输入输出和结束原因。
+
+## 长期项目演进 · V0 · 模拟工具闭环
+
+当前必做：沿用手写循环，不使用 LangChain。先用 mock/simulator robot tools 验证自然语言 → tool call → 模拟执行 → observation，暂不控制真机。原有通用工具 Todo 作为协议练习，机器人工具复用同一套接口。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 实现 get_robot_state、move_to_named_pose、open_gripper、close_gripper，使用命名位姿白名单并返回结构化状态。
+- [ ] 用正常任务、未知位姿和工具超时验证模拟闭环；保存执行前后状态及 trace。
+
+### 阶段产出 / 完成判据
+
+交付可复现 V0：自然语言指令驱动模拟状态变化，失败有明确原因；打 v0 / stage-1 tag。
+
 
 [← Stage 0](stage-00.md) · [下一阶段：Tool / RAG / Memory →](stage-02.md)

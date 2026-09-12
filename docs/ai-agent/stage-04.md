@@ -2,6 +2,8 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 把可复用的任务方法封装成 Skill，把外部能力通过 MCP 标准化暴露；理解 Tool、Prompt、Skill、Resource 与 Protocol 的边界。
 
 ## Todo
@@ -52,7 +54,7 @@ Agent → MCP Client → Transport → MCP Server
 
 ## 阶段产出
 
-创建 `research-mcp`：提供 `search_papers()`、`read_document()`、`run_analysis()` 等能力，并让 Stage 3 的 Agent 通过 MCP 使用；再写一个研究流程 Skill，规定何时检索、如何引用和如何验收。
+创建 robot-mcp 或清晰 Tool Server，提供状态、运动规划、运动执行、夹爪和知识检索能力，并由 Stage 3 的 Agent 调用。编写机器人任务 Skill，规定检索、校验、审批、执行和验收流程，形成 V3。
 
 ## 暂不深入
 
@@ -68,5 +70,19 @@ Agent → MCP Client → Transport → MCP Server
 - [ ] MCP Server 的合法、非法、超时和无权限请求均有测试。
 - [ ] Skill 有可重复的 smoke test 和明确验收结果。
 - [ ] 断开 MCP 后，Agent 能给出清晰降级或失败信息。
+
+## 长期项目演进 · V3 · Robot MCP / Tool Server
+
+当前必做：将 robot control、robot state、knowledge retrieval 封装成 MCP Server 或清晰 Tool Server；MCP 学习 Todo 仍通过一个最小 Server 实验完成。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 提供 robot.get_state、robot.plan_motion、robot.execute_motion、robot.gripper_open/close 与知识检索接口，定义严格 schema。
+- [ ] 区分只读、规划和危险执行权限；执行必须通过服务端校验与审批，拒绝过期计划和越权调用。
+
+### 阶段产出 / 完成判据
+
+交付 V3 与工具权限表；Skill 描述检索、规划、校验、审批和结果验收流程。
+
 
 [← Stage 3](stage-03.md) · [下一阶段：Multi-Agent →](stage-05.md)

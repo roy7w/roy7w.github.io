@@ -2,6 +2,8 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 交付一个能真实解决问题、可复现、可评测、可部署、可安全运维的完整项目，并把它整理成求职作品而不是课程作业。
 
 ## Todo
@@ -58,28 +60,13 @@
 - [ ] 把量化结果整理成 2–3 条可验证的简历 bullet。
 - [ ] 准备 5 分钟 Demo 和 15 分钟技术讲解。
 
-## 推荐选题
+## 长期主项目
 
-### Accelerator Operation Agent
-
-```text
-User / Operator
-      ↓
-Agent / Planner
-├── search_manual()  → RAG / Manuals
-├── read_pv()        → EPICS read-only gateway
-├── query_alarm()    → Alarm service
-├── plot_history()   → Historical database
-└── diagnose_device()→ Evidence-based report
-```
-
-第一版保持设备控制只读；任何写 PV 或执行设备动作都必须经过严格权限、仿真验证与人工确认。
-
-其他候选：Robotics Task Planning Assistant、Research Intelligence Agent、实验数据分析 Agent。
+**UR7e Embodied Agent / 具身智能机械臂 Agent**：从 Stage 1 的 V0 持续演化而来，不在本阶段重新选题。以命名位姿移动、夹爪操作和受约束桌面任务为起点；明确支持范围及非目标。
 
 ## 阶段产出
 
-一个公开作品仓库、在线或本地 Demo、架构与安全说明、固定评测集、量化报告、项目复盘文章和简历描述。项目应覆盖从需求到部署的完整闭环。
+一个 UR7e Embodied Agent 公开作品仓库、真实或高保真仿真 Demo、架构与安全说明、固定评测集、量化报告、项目复盘文章和简历描述。项目覆盖从任务输入到执行反馈、恢复和最终报告的完整闭环。
 
 ## 暂不深入
 
@@ -96,5 +83,20 @@ Agent / Planner
 - [ ] 高风险动作默认禁止或要求明确确认，且有审计记录。
 - [ ] 能用 5 分钟讲清问题、架构、指标、取舍和失败复盘。
 - [ ] 招聘者可以从仓库直接验证简历中的核心结论。
+
+## 长期项目演进 · Production · UR7e Embodied Agent / 具身智能机械臂 Agent
+
+当前必做：整合 V0–V5 为真实或高保真仿真闭环；实验室环境允许时采用 ROS2 + MoveIt2 + UR7e。明确硬件、驱动、夹爪和场景条件，仿真结果与真机结果分开报告。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 跑通自然语言/结构化任务 → Agent Planner → RAG/Skills → Robot tools/MCP → motion planning → execution → observation → recovery → final report。
+- [ ] README 提供架构图、demo 视频/GIF、部署说明、Eval Report、Safety Design、Known Limitations，并给出至少一个失败恢复演示。
+- [ ] 复用 Stage 7 测试集扩充至 50–100 条，提供 baseline、消融、版本信息和可验证的求职成果。
+
+### 阶段产出 / 完成判据
+
+交付 UR7e 完整系统与作品集。高级可选：VLM 感知、Whisper 语音、VLA、RL/behavior cloning、边缘部署；这些扩展不属于第一轮完成条件。
+
 
 [← Stage 9](stage-09.md) · [回到 Roadmap](index.md)

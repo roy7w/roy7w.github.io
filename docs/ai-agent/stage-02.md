@@ -2,6 +2,8 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 让 Agent 能可靠使用外部知识和更丰富的工具，并建立 Context、Retrieval 与 Memory 的清晰边界。
 
 ## Todo
@@ -48,16 +50,7 @@
 
 ## 阶段产出
 
-完成一个 Research / PDF Agent：
-
-```text
-Documents → Chunk → Embed → Retrieve → Agent → Citation
-                                      ├── read_file()
-                                      ├── search_document()
-                                      └── run_analysis()
-```
-
-同时提交 20–30 个问题的检索与回答评测表，包含引用正确性、无答案处理和失败原因。
+完成 UR7e 手册 RAG + 模拟控制 Tool 的 V1：Documents → Chunk → Embed → Retrieve → Agent → Citation，并连接状态查询、故障码查询与动作工具。提交 20–30 个问题的检索与回答评测表，包含引用正确性、无答案处理和失败原因。
 
 ## 暂不深入
 
@@ -73,5 +66,19 @@ Documents → Chunk → Embed → Retrieve → Agent → Citation
 - [ ] 对无答案问题不会伪造 citation。
 - [ ] 能解释每类 Memory 的生命周期、权限和清理方式。
 - [ ] 项目可由 README 中的步骤从零复现。
+
+## 长期项目演进 · V1 · 机械臂手册 RAG + 控制 Tool
+
+当前必做：在 V0 上接入 UR7e/机器人手册知识库、动作/状态工具、故障码查询和任务上下文。先用模拟控制；文档内容作为证据，不直接授权动作。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 保存手册型号、版本、章节/页码元数据，让知识回答带可定位引用，未知故障码不编造。
+- [ ] 打通手册检索、故障码查询、当前状态和模拟动作工具；区分会话任务上下文与实时机器人状态。
+
+### 阶段产出 / 完成判据
+
+交付 V1 及 20–30 个问题的评测表，覆盖引用正确性、无答案和状态冲突。
+
 
 [← Stage 1](stage-01.md) · [下一阶段：Harness / LangGraph / Backend →](stage-03.md)

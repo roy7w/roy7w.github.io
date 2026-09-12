@@ -3,17 +3,17 @@
 
   const STORAGE_PREFIX = "roy7w-agent-roadmap:v1:";
   const STAGE_TOTALS = {
-    "stage-00": 22,
-    "stage-01": 31,
-    "stage-02": 33,
-    "stage-03": 33,
-    "stage-04": 31,
-    "stage-05": 26,
-    "stage-06": 30,
-    "stage-07": 33,
-    "stage-08": 34,
-    "stage-09": 32,
-    "stage-10": 43
+    "stage-00": 24,
+    "stage-01": 33,
+    "stage-02": 35,
+    "stage-03": 35,
+    "stage-04": 33,
+    "stage-05": 28,
+    "stage-06": 31,
+    "stage-07": 36,
+    "stage-08": 36,
+    "stage-09": 33,
+    "stage-10": 46
   };
   const OVERALL_TOTAL = Object.values(STAGE_TOTALS).reduce((sum, value) => sum + value, 0);
 

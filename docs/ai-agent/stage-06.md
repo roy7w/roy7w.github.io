@@ -2,6 +2,8 @@
 
 ## 目标
 
+本阶段作为独立增强实验推进，不强制接入机器人主项目。
+
 理解微调在 Agent 应用中的正确位置，亲手完成一次小模型 PEFT 训练、评测与部署；用数据证明它是否比 prompt 或 RAG 更适合当前问题。
 
 ## Todo
@@ -68,5 +70,18 @@ Task Definition → Dataset → SFT with LoRA / QLoRA
 - [ ] 微调模型在固定测试集上优于强 prompt baseline，而不是只展示好例子。
 - [ ] 能从显存和质量角度说明 LoRA 与 QLoRA 的取舍。
 - [ ] model card 明确训练数据、适用范围、限制和已知失败模式。
+
+## 长期项目演进 · 模型能力增强 · 独立微调实验
+
+当前必做：保留独立小型 SFT/LoRA/QLoRA 实验，主项目沿用 V4，不要求把微调接到机械臂。只有 prompt/tool schema/RAG 不足，且有稳定高质量任务数据时，才考虑具身任务小规模 SFT/LoRA。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 记录一个主项目误差案例，判断应优先改 prompt、tool schema、RAG 还是训练，并给出数据依据。
+
+### 阶段产出 / 完成判据
+
+交付独立训练实验和接入/不接入主项目的决策说明。若未优于强 baseline，应诚实记录负结果，原效果目标不虚勾。高级可选：VLA、行为克隆（behavior cloning）、RL 第一轮只认知，后续另立实验。
+
 
 [← Stage 5](stage-05.md) · [下一阶段：Eval / Observability / Safety →](stage-07.md)

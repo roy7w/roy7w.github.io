@@ -2,6 +2,8 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 理解 LLM 推理的资源与性能约束，使用 vLLM 部署一个兼容 API 的模型服务，并能用数据解释吞吐、延迟、显存、质量和成本之间的取舍。
 
 ## Todo
@@ -72,5 +74,19 @@ Client → API Gateway → vLLM → Model / Adapter
 - [ ] benchmark 可重复，并同时报告延迟、吞吐、显存和质量。
 - [ ] 面对 OOM 或高尾延迟，能提出有依据的调参顺序。
 - [ ] Agent 可切换远程 API 与本地 vLLM，而不改核心业务逻辑。
+
+## 长期项目演进 · V5 · 决策模型部署 / AI Infra
+
+当前必做：AI Infra 是第二技能栈。在本地或服务器部署 LLM 决策模块，保持机器人工具与安全边界独立；硬件不足时使用可用服务器并如实记录环境。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 让主项目通过统一接口切换 API 模型与本地/服务器 vLLM，在同一任务集比较延迟、成本、工具调用质量与任务成功率。
+- [ ] 记录 TTFT、throughput、KV cache/显存、并发和量化取舍；模型不可用时停止新动作或安全降级。
+
+### 阶段产出 / 完成判据
+
+交付 V5、部署说明和 benchmark。Stage 6 adapter 部署可作为独立实验，不是主项目依赖。高级可选：ONNX Runtime / TensorRT / Jetson，用于视觉模型或小模型边缘推理，第一轮不要求完成。
+
 
 [← Stage 7](stage-07.md) · [下一阶段：Browser / Computer Use →](stage-09.md)

@@ -15,24 +15,23 @@
 | 长期主项目 | 展示架构演进、工程能力和完整交付 | 从 Stage 1 持续迭代到 Stage 10 |
 | 阶段微项目 | 快速验证单一概念，隔离复杂度 | 做到可运行、可测试即可，不追求产品化 |
 
-## 推荐主项目：Research Agent
+## 长期主项目：UR7e Embodied Agent
 
-你已有 RAG 项目经验，主项目可以选择 **Research Agent / Personal Research Assistant**。它既能复用已有基础，又能自然覆盖后续能力：
+主项目从 Stage 1 的模拟工具闭环开始，持续迭代至 Stage 10。Agent Engineering 与 Robotics Integration 是主线；微调与 AI Infra 是增强能力，Browser / Computer Use 是独立旁支。
 
-| Stage | 主项目增量 |
-|---|---|
-| 1 | 手写 Agent Loop，加入 calculator、read_file、get_time 等安全工具 |
-| 2 | 加入网页/PDF 检索、RAG、短期状态与长期记忆 |
-| 3 | 用 LangGraph 重构状态流，增加 FastAPI、任务持久化和恢复 |
-| 4 | 把检索、引用、报告导出封装为 Skills，并通过 MCP 接入工具 |
-| 5 | 在确有收益时拆分 planner、researcher、writer、reviewer |
-| 6 | 以小型 LoRA/QLoRA 实验验证领域适配，不强行替换主模型 |
-| 7 | 建立数据集、成功率、引用准确性、延迟、成本、trace 和安全测试 |
-| 8 | 尝试 vLLM 或其他推理服务，记录吞吐、显存和延迟 |
-| 9 | 加入受限 Browser / Computer Use，明确权限、确认与失败恢复 |
-| 10 | 整理部署、CI、监控、演示、架构文档和完整复盘 |
-
-主项目不要求一开始就确定最终全部功能。每个 Stage 只增加当前能解释和验证的一层。
+| Stage | 能力重点 | 长期项目增量 |
+|---|---|---|
+| 0 | LLM / Transformer / Agent 全局认知 | 具身架构图，仅认知 ROS2 / MoveIt2 / VLA / RL |
+| 1 | 手写 Minimal Agent Loop | V0：mock/simulator robot tools 闭环 |
+| 2 | Tool / RAG / Memory | V1：手册引用、故障码、任务上下文与工具联动 |
+| 3 | Harness / LangGraph / FastAPI / Docker | V2：仿真状态机、审批、超时与恢复；ROS2 / MoveIt2 入门 |
+| 4 | Skills / MCP | V3：Robot MCP / Tool Server 与权限分级 |
+| 5 | Multi-Agent | V4：结构化计划，按需拆分与安全检查 |
+| 6 | SFT / LoRA / QLoRA | 独立增强实验，不强制接入主项目 |
+| 7 | Eval / Observability / Safety | 机械臂任务测试集、指标与真机准入验证 |
+| 8 | Inference / vLLM / Infra Basics | V5：决策模型部署与 API/本地对照 |
+| 9 | Browser / Computer Use | 独立旁支，不阻塞机器人主线 |
+| 10 | Production | UR7e 完整系统、演示、评测与求职作品集 |
 
 ## 阶段微项目
 
@@ -55,7 +54,7 @@ Stage 1 不直接上 LangChain 或 LangGraph。每个知识点按以下循环推
 3. **合并成 Agent Loop**：逐步组合成约 100–300 行的 Minimal Agent。
 4. **主动制造失败**：测试非法参数、未知工具、超时、重复调用和最大步数。
 5. **补测试与 trace**：确保能解释模型为何调用工具、工具返回了什么、为何结束。
-6. **接入主项目**：把已经验证的循环作为 Research Agent 的第一版内核。
+6. **接入主项目**：把已经验证的循环作为 UR7e Embodied Agent 的第一版内核。
 7. **留下阶段快照**：打 `stage-1` tag，记录架构、测试结果、限制和下一步。
 
 因此，Stage 1 的产出既是一个独立可运行的 Minimal Agent，也是长期主项目的第一个版本；两者在这一阶段可以是同一份代码。
@@ -63,10 +62,10 @@ Stage 1 不直接上 LangChain 或 LangGraph。每个知识点按以下循环推
 ## 仓库组织建议
 
 ```text
-research-agent/
+ur7e-embodied-agent/
 ├── src/                  # 长期主项目
 ├── tests/                # 自动化测试
-├── evals/                # 从 Stage 7 开始扩充
+├── evals/                # 从 V0 留样例，Stage 7 系统扩充
 ├── labs/                 # 阶段微项目
 │   ├── skill-pack/
 │   ├── lora-experiment/

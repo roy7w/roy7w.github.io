@@ -2,6 +2,8 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 把 Multi-Agent 当成 coordination problem：只有在职责、上下文、权限或并行性确实需要隔离时才拆分，并能度量拆分是否比单 Agent 更好。
 
 ## Todo
@@ -38,18 +40,7 @@
 
 ## 阶段产出
 
-完成一个 Research Team：
-
-```text
-Supervisor
-├── Researcher → Search / RAG
-├── Analyst    → Python / Data
-└── Reviewer   → Evidence Rubric
-        ↓
-     Final Report
-```
-
-同时提交 single-agent 对照版本和一份量化实验报告。
+完成 UR7e V4：Planner → Robot Executor → Observation，按需加入 Safety/Reviewer。提交 single-agent 对照版本与量化报告；可依据实验结果保留单 Agent，不能为角色数量牺牲可靠性。
 
 ## 暂不深入
 
@@ -65,5 +56,19 @@ Supervisor
 - [ ] Multi-Agent 在预先定义的至少一类任务上显著优于 baseline。
 - [ ] 对失败任务能判断问题来自分解、路由、通信还是合并。
 - [ ] 能明确说出何时应退回 single-agent。
+
+## 长期项目演进 · V4 · 按需协作与安全检查
+
+当前必做：先保留 single-agent baseline。仅在职责或权限隔离有收益时拆为 Planner Agent + Robot Executor + Safety/Reviewer；Executor 可以是确定性模块，安全检查不能仅依赖 LLM Reviewer。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 用结构化任务计划描述步骤、前置条件、工具参数、预期 observation 和失败处理；执行前做确定性安全检查。
+- [ ] 在同一机械臂模拟任务集比较单 Agent 与按需拆分版本；若收益不足，记录结论并保留单 Agent。
+
+### 阶段产出 / 完成判据
+
+交付 V4 及对照报告。原“显著优于 baseline”条目作为效果目标；无收益但实验完整、能够解释回退，也满足本阶段验收，不强行勾选该条。
+
 
 [← Stage 4](stage-04.md) · [下一阶段：SFT / LoRA / QLoRA →](stage-06.md)

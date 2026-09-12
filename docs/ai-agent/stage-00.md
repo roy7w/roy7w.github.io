@@ -2,6 +2,8 @@
 
 ## 目标
 
+围绕 UR7e 具身 Agent 推进本阶段能力。
+
 把后续概念放进同一张技术地图。能解释 LLM、RAG、Agent、微调和推理基础设施各自解决什么问题，并判断一个需求是否真的需要 Agent。
 
 ## Todo
@@ -67,5 +69,19 @@ LLM
 - [ ] 面对三个真实需求，能给出 workflow / single-agent / multi-agent 选择及理由。
 - [ ] 能用自己的话解释生成参数变化会如何影响输出。
 - [ ] 已提交技术地图与决策说明，并让另一位读者能够复述核心关系。
+
+## 长期项目演进 · 架构认知（Stage 0）
+
+先理解 LLM/VLM 大脑负责理解与任务规划，机器人控制/规划/执行小脑负责可验证的运动执行。ROS2、MoveIt2、VLA、RL 第一轮仅认知，不安装整套机器人栈。
+
+### 当前必做（旁支阶段在独立实验中完成）
+
+- [ ] 画出 Natural Language → Agent Planner → Robot Tools/ROS2/UR API → Motion Planning/Execution → Observation/Feedback 的架构，并解释反馈如何回到 Planner。
+- [ ] 能区分语义任务计划与运动轨迹；说明 LLM 不能替代底层控制器和安全约束。
+
+### 阶段产出 / 完成判据
+
+产出一张具身 Agent 架构图及模块职责说明，补充到原技术地图。
+
 
 [下一阶段：Minimal Agent Loop →](stage-01.md)
