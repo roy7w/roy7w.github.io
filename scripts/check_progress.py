@@ -25,15 +25,20 @@ def hash_text(text):
         value //= 36
     return result or '0'
 
+task_ids = []
 for page, tasks in manifest.items():
     rendered = soup(root / f'site/ai-agent/{page}/index.html').select('li.task-list-item')
     assert len(rendered) == len(tasks), page
     for item, task in zip(rendered, tasks):
         assert item.select_one('[data-task-id]')['data-task-id'] == task['id']
         assert item.select_one('input').has_attr('checked') == task['default']
+        task_ids.append(task['id'])
 
-assert [i for i, task in enumerate(manifest['stage-00']) if task['default']] == [0, 1, 4, 5, 6]
+assert len(task_ids) == len(set(task_ids)), 'duplicate task ID'
 assert all(task['optional'] for task in manifest['stage-07'])
+assert next(task for task in manifest['stage-08'] if task['id'] == 's08-t013')['optional']
+assert all(not task['optional'] for task in manifest['stage-08'] if task['id'] != 's08-t013')
+
 archive_count = 0
 for number in range(11):
     page = f'stage-{number:02}'
@@ -43,4 +48,4 @@ for number in range(11):
         assert {'page': page, 'key': hash_text(text + '|' + str(index))} in legacy[text], (page, index)
         archive_count += 1
 assert archive_count == sum(len(entries) for entries in legacy.values())
-print(f'PASS: all rendered task IDs/defaults agree; {archive_count} legacy identities preserved; optional stage excluded.')
+print(f'PASS: {len(task_ids)} current task IDs/defaults agree; {archive_count} legacy identities preserved.')

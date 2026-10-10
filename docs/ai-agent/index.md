@@ -1,58 +1,85 @@
-# AI Agent 学习路线 · Stage 0–9
+# UR7e 具身 AI Agent · Stage 0–9
 
-唯一长期主线是 **UR7e 具身 Agent**。以 [Agent-Learning-Hub](https://datawhalechina.github.io/Agent-Learning-Hub/) 的逐步 Todo、Minimal Loop、Tools / RAG / Memory、Harness、Skills / MCP、Eval 与 Ship 为知识骨架，按 DeepSeek 项目建议安排落地顺序：先控制链路，再受约束真机 Demo，再按条件扩展 VLA，最后以推理部署增强工程能力。
+这是一条围绕同一个长期项目持续演进的学习路线：从最小 LLM 调用出发，先用纯 Python Robot Mock 看清 Agent 的数据流，再建立 ROS 2 / MoveIt 2 确定性执行层，最后加入知识、记忆、工作流、安全评测、MCP / Skills 与推理部署。
 
-当前正在 **Stage 0**：应用形态、Agent loop、系统组件、MCP / Skills / Harness、token 基础五项已完成；Attention、FFN、Residual、LayerNorm、Decoder-only、自回归生成与其余推理基础继续学习。
+当前进度：**Stage 1 · Minimal Agent + Robot Mock**。已经完成多轮消息、有限重试、结构化输出、Pydantic 校验、受约束 Tool、Observation 回传和有限 Agent Loop；下一步补齐机器人 `idle/busy` 状态、循环保护和 Stage 1 验收任务。
 
-## 使用方式
+## 路线原则
 
-1. 每一步按“理解概念 → 接入项目 → 制造失败 → 保存证据”推进。
-2. 每阶段在同一个项目上增加能力，按完成判据验收，不靠学过多少框架判断进展。
-3. Stage 0 不碰真机；Stage 1 用 Mock；Stage 2 独立打通 ROS2 / MoveIt2 / UR7e。
-4. Stage 4 做第一个可写简历的受约束 Demo，Stage 6 形成系统评测。
-5. Stage 7 为 Advanced / Optional，可从 Stage 6 直接进入 Stage 8，再完成 Stage 9。
+1. 每一步都经历“理解概念 → 写最小示例 → 制造失败 → 本地校验 → 保存 Git checkpoint”。
+2. 每个 Stage 在上一版本上增加能力，不为学习单个框架另开无关 Demo。
+3. LLM 只负责高层意图和 Skill 选择，不能替代运动规划、控制器或硬件安全功能。
+4. Stage 1 只用 `MockRobot`；Stage 2 才恢复 ROS 2 Fake Hardware；真机必须经过独立准入。
+5. 进度由可运行代码、trace、测试和验收结果证明，而不是由阅读数量证明。
 
-## 路线与项目里程碑
-
-| Stage | 能力重点 | 项目版本与验收增量 |
-|---|---|---|
-| [Stage 0](stage-00.md) | LLM & Agent 全局认知 | 架构图：解释 LLM 与实时控制分层 |
-| [Stage 1](stage-01.md) | Minimal Agent + Robot Mock | v0.1：自然语言 → Mock skill → 状态反馈 |
-| [Stage 2](stage-02.md) | ROS2 / MoveIt2 / UR7e 控制基础 | v0.2：Home → Waypoint A → Waypoint B → Home |
-| [Stage 3](stage-03.md) | Robot Tools + RAG + Memory | v0.3：受约束 Robot Tools、可引用手册与最小 Memory |
-| [Stage 4](stage-04.md) | LangGraph + Backend + 受约束具身 Agent | v1.0：有审批与恢复的受约束真机任务 |
-| [Stage 5](stage-05.md) | Skills + MCP + UR7e Agent | v1.1：ur7e-mcp-server 与可复用 Skills |
-| [Stage 6](stage-06.md) | Eval + Safety + Observability | v1.5：30–50 条任务评测、安全拒绝与执行追踪 |
-| [Stage 7](stage-07.md) | VLA / 模仿学习 / Post-training（Advanced / Optional） | v2.0（可选）：Classical Skill 与 VLA Skill 并存 |
-| [Stage 8](stage-08.md) | Inference / AI Infra / Edge Deployment | v2.5：本地决策服务与性能基准，按需边缘部署 |
-| [Stage 9](stage-09.md) | Production / Portfolio / 求职 | 作品集：可复现 Demo、指标、失败案例与 1+1 求职项目 |
-
-## 学习骨架如何与项目结合
-
-| Agent-Learning-Hub 知识模块 | 本路线位置 | 机器人项目落点 |
-|---|---|---|
-| 全局认知 / Minimal Loop | Stage 0–1 | 系统分层与 Mock skill 闭环 |
-| Tool / RAG / Memory | Stage 3；Stage 2 先补控制底座 | 受约束接口、手册引用、最小任务记忆 |
-| Agent Harness | Stage 4 | LangGraph 状态机、审批、恢复与 Backend |
-| Skills / MCP | Stage 5 | 复用机器人技能与 ur7e-mcp-server |
-| Eval / Observability / Safety | 从 Stage 1 建立，Stage 6 系统验收 | 任务集、安全拒绝、完整 trace |
-| Ship | Stage 9 | 可复现作品集与求职材料 |
-| Multi-Agent / Browser | Later / Optional | 有余力再补，不占主线 Stage |
-
-## 最终系统
+## 全局架构
 
 ```text
-用户自然语言 → LLM/VLM → Agent → 技能/Tool → ROS2/MoveIt2 → UR7e
-                          ↑                         │
-                          └──── 状态与失败反馈 ────────┘
+用户自然语言
+    ↓
+LLM / VLM
+    ↓
+Agent：目标理解、单步决策、Observation 处理
+    ↓
+Safety / Approval：权限、状态、参数、动作边界
+    ↓
+Robot Tools / Skills：受约束、可校验、可追踪
+    ↓
+ROS 2 / MoveIt 2 / Robot Controller
+    ↓
+UR7e 与环境
+    ↓
+状态、执行结果与失败原因反馈给 Agent
 ```
 
-执行路径始终经过 Safety Layer 与必要的人工审批，LLM 不直接执行低层运动。AI Infra 是主项目增强：让模型在实际资源约束下运行得稳定且可测量；通用 Agent 项目暂不做，后续有余力再补。
+其中：
 
-## 进度保存与迁移
+- **LLM / Agent**：处理自然语言、选择高层能力、根据 Observation 决定下一步。
+- **Robot Tools / Skills**：把开放式模型输出收敛为确定性接口。
+- **Safety / Approval**：独立于提示词执行权限、限位、状态与审批检查。
+- **ROS 2 / MoveIt 2**：通信、运动规划、轨迹执行与结果反馈。
+- **Robot Controller / 硬件安全**：实时控制、设备安全功能和实体急停，不能依赖 LLM。
 
-新版使用稳定任务 ID，保留旧浏览器数据；Stage 0 原任务与已勾选状态可迁移，确认完成的五项作为默认值。其他旧任务只有明确匹配时才迁移，不因 Stage 编号相同就判定新知识已完成。旧版所有任务和原进度可在 [旧版存档](archive/stage-00.md) 查阅，不计入新版总进度。
+## 项目框架
 
-总进度包含 Stage 0–9 的必做任务，排除 Stage 7 和 Stage 8 的条件性 VLA / Edge 任务；可选页面仍显示本页进度。新增任务会改变总数，但不会抹除完成记录。进度仅保存在当前浏览器，不跨设备同步。
+```text
+ur7e-embodied-agent/
+├── agent/          # 决策协议、循环、状态与工作流
+├── robot/          # Mock / ROS 2 适配器和确定性执行
+├── safety/         # 权限、参数、状态、审批与停止策略
+├── rag/            # 手册、SOP 和接口知识检索
+├── memory/         # 有生命周期的任务记忆
+├── skills/         # 可复用多步能力
+├── mcp/            # 标准化能力暴露
+├── eval/           # 任务集、指标和回归测试
+├── deployment/     # 模型服务与性能基准
+└── docs/           # 架构、运行、trace 与失败案例
+```
 
-[项目实践与仓库组织](../projects/index.md) · [Later / Optional](later.md)
+当前仓库仍使用 ROS 2 工作区结构；上图是后续按职责逐步形成的目标框架，不要求在 Stage 1 一次性创建全部目录。
+
+## Stage 总览
+
+| Stage | 目标 | 相对上一阶段的能力增量 | 主要产出 |
+| :--- | :--- | :--- | :--- |
+| [Stage 0](stage-00.md) | 建立 LLM 与 Agent 技术地图 | 理解模型、消息、Tool、Observation 与系统分层 | 概念图与技术选择说明 |
+| [Stage 1](stage-01.md) | Minimal Agent + Robot Mock | 从 LLM API 增加结构化决策、Mock Tool 和有限反馈闭环 | v0.1 Mock Agent |
+| [Stage 2](stage-02.md) | ROS 2 / MoveIt 2 / UR7e | 将 Mock 之外的确定性机器人能力独立打通 | v0.2 Robot Control Layer |
+| [Stage 3](stage-03.md) | Robot Tools + RAG + Memory | 将 Agent 接入受约束机器人接口、资料和有效上下文 | v0.3 Grounded Robot Agent |
+| [Stage 4](stage-04.md) | LangGraph + Backend | 将手写循环升级为可恢复、可审批的任务服务 | v1.0 Embodied Agent Service |
+| [Stage 5](stage-05.md) | Skills + MCP | 将已验证能力封装为可复用 Skill 和标准协议 | v1.1 Skills / MCP Server |
+| [Stage 6](stage-06.md) | Eval + Safety + Observability | 用任务集、指标和证据链系统验收可靠性 | v1.5 Evaluation Report |
+| [Stage 7](stage-07.md) | VLA / 模仿学习（可选） | 条件允许时加入学习型动作策略并保留经典回退 | v2.0 VLA Skill（可选） |
+| [Stage 8](stage-08.md) | Inference / AI Infra | 优化决策模型服务、资源与延迟 | v2.5 Deployment Benchmark |
+| [Stage 9](stage-09.md) | Production / Portfolio | 整理为可复现、可评测、可展示的工程作品 | Release、Demo 与求职材料 |
+
+## 如何使用 Todo
+
+- 勾选表示已经有实际学习或验证证据，不表示相关主题永远不再复习。
+- 子任务只在确实存在独立验证边界时拆分，不为微小语法点增加 checkbox。
+- Stage 7 整体为可选；未具备设备、数据或算力时可跳过，不阻塞 Stage 8–9。
+- Stage 2 已有部分 ROS 2 Fake Hardware 资产会标记为完成，但仍需完成本阶段剩余验收。
+
+进度保存在当前浏览器。任务保留稳定 ID，路线精简不会主动清除已完成记录。
+
+[项目实践](../projects/index.md) · [Later / Optional](later.md)

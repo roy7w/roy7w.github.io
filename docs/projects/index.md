@@ -1,50 +1,45 @@
-# UR7e 具身 Agent · 项目实践
+# UR7e 具身 AI Agent · 项目实践
 
-一个长期主项目持续演进，每个 Stage 的学习步骤直接贡献下一版能力。核心项目建议命名 **ur7e-embodied-agent**；博客继续使用现有个人站点仓库。
+所有学习围绕同一个项目连续演进。Stage 1 先把 Agent 逻辑放在 `MockRobot` 上验证；Stage 2 才恢复已有 ROS 2 资产；后续能力都要复用前一阶段的接口和验收证据。
 
-## 项目版本与学习进展
+## 当前代码基线
 
-| Stage | 能力重点 | 项目版本与验收增量 |
-|---|---|---|
-| [Stage 0](../ai-agent/stage-00.md) | LLM & Agent 全局认知 | 架构图：解释 LLM 与实时控制分层 |
-| [Stage 1](../ai-agent/stage-01.md) | Minimal Agent + Robot Mock | v0.1：自然语言 → Mock skill → 状态反馈 |
-| [Stage 2](../ai-agent/stage-02.md) | ROS2 / MoveIt2 / UR7e 控制基础 | v0.2：Home → Waypoint A → Waypoint B → Home |
-| [Stage 3](../ai-agent/stage-03.md) | Robot Tools + RAG + Memory | v0.3：受约束 Robot Tools、可引用手册与最小 Memory |
-| [Stage 4](../ai-agent/stage-04.md) | LangGraph + Backend + 受约束具身 Agent | v1.0：有审批与恢复的受约束真机任务 |
-| [Stage 5](../ai-agent/stage-05.md) | Skills + MCP + UR7e Agent | v1.1：ur7e-mcp-server 与可复用 Skills |
-| [Stage 6](../ai-agent/stage-06.md) | Eval + Safety + Observability | v1.5：30–50 条任务评测、安全拒绝与执行追踪 |
-| [Stage 7](../ai-agent/stage-07.md) | VLA / 模仿学习 / Post-training（Advanced / Optional） | v2.0（可选）：Classical Skill 与 VLA Skill 并存 |
-| [Stage 8](../ai-agent/stage-08.md) | Inference / AI Infra / Edge Deployment | v2.5：本地决策服务与性能基准，按需边缘部署 |
-| [Stage 9](../ai-agent/stage-09.md) | Production / Portfolio / 求职 | 作品集：可复现 Demo、指标、失败案例与 1+1 求职项目 |
+工作区已经具备两部分资产：
 
-## 每一步怎么推进
+- **Agent 学习主线**：从 `01_llm_api.py` 到 `11_bounded_agent_loop.py`，以及拆分后的模型、LLM Client、Agent、Tools 和 Mock Robot 模块。
+- **ROS 2 先期资产**：`ur7e_bringup`、Fake Hardware 启动、状态查询、joint states、controllers 和 trajectory action 验证结果。
 
-1. 读当前 Stage 对应的一项概念或接口文档。
-2. 在 Mock 或最小环境验证，再接入当前项目版本。
-3. 同时验证正常路径、参数错误、超时与恢复。
-4. 保存代码、固定依赖、脱敏 trace、结果和已知限制。
-5. 通过完成判据后打版本标签，再进入下一步。
+两条线暂不提前耦合。Stage 1 完成循环保护和固定验收后，Stage 2 先独立补齐确定性机器人控制；Stage 3 再通过统一 Tool 契约连接 Agent 与 ROS 2 Adapter。
 
-Stage 2 的初始时间盒约 1–2 周，Stage 4 的受约束真机 Demo 约 4–6 周；它们是规划参考，设备适配与完成证据决定实际进度。Stage 0 暂不碰真机，Stage 1 使用 Mock；安全校验与审批贯穿后续阶段。
+## 版本路线
 
-## 核心项目目录建议
+| Stage | 新增能力 | 版本产出 |
+| :--- | :--- | :--- |
+| [Stage 0](../ai-agent/stage-00.md) | LLM、Agent 与具身系统边界 | 概念图与技术选择说明 |
+| [Stage 1](../ai-agent/stage-01.md) | 结构化决策、Mock Tools、Observation 与有限循环 | v0.1 Mock Agent |
+| [Stage 2](../ai-agent/stage-02.md) | ROS 2、MoveIt 2 与 UR7e 确定性执行 | v0.2 Robot Control Layer |
+| [Stage 3](../ai-agent/stage-03.md) | Robot Adapter、RAG 与 Memory | v0.3 Grounded Robot Agent |
+| [Stage 4](../ai-agent/stage-04.md) | 状态图、恢复、审批与 Backend | v1.0 Embodied Agent Service |
+| [Stage 5](../ai-agent/stage-05.md) | 可复用 Skills 与 MCP | v1.1 Skills / MCP Server |
+| [Stage 6](../ai-agent/stage-06.md) | Eval、安全矩阵与可观测性 | v1.5 Evaluation Report |
+| [Stage 7](../ai-agent/stage-07.md) | VLA / 模仿学习 Skill（可选） | v2.0 VLA Skill |
+| [Stage 8](../ai-agent/stage-08.md) | 本地推理、性能与资源治理 | v2.5 Deployment Benchmark |
+| [Stage 9](../ai-agent/stage-09.md) | 发布、复现与项目表达 | Release、Demo 与作品集 |
 
-```text
-ur7e-embodied-agent/
-├── agent/
-├── robot/
-├── mcp/
-├── skills/
-├── rag/
-├── safety/
-├── eval/
-├── deployment/
-└── docs/
-```
+## 推进方式
 
-## 1+1 求职组合
+1. 先理解当前步骤的输入、输出、状态变化和失败语义。
+2. 在最小环境中实现并主动制造错误，再接入主流程。
+3. 用代码、测试、trace 或运行记录证明完成，不用“看过”替代“验证过”。
+4. 更新数据流和边界说明，保存 Git checkpoint。
+5. 达到当前 Stage 的完成判据后，再引入下一层复杂度。
 
-- **UR7e Embodied AI Agent**：证明自然语言、受约束计划、运动控制与真实反馈的工程闭环。
-- **Embodied AI Inference Optimization**：复用同一任务与评测，展示模型部署、性能瓶颈、优化收益与质量权衡；可以是主仓库 deployment/ 下的性能子项目。
+## 不变的工程边界
 
-README、Demo、指标与失败案例按 [Stage 9](../ai-agent/stage-09.md) 验收。VLA / LeRobot / SmolVLA 属于 [Stage 7 高级可选](../ai-agent/stage-07.md)；通用 Agent、Multi-Agent、Browser 和独立 LoRA 实验均在 [Later / Optional](../ai-agent/later.md)，当前不另开项目。
+- LLM 负责理解目标和选择高层 Skill，不生成底层关节角或轨迹。
+- Robot Tool、ROS 2 / MoveIt 2、控制器和硬件安全各自承担确定性职责。
+- Mock、仿真和真机的验证结果必须明确区分。
+- 高风险动作必须有状态、权限、参数、审批和停止保护。
+- 错误、拒绝和超时是正式协议的一部分，不能用自然语言掩盖。
+
+全局架构与目标目录只在[路线总览](../ai-agent/index.md)维护；各 Stage 页面只描述该阶段相对上一阶段增加什么、做什么以及如何验收。

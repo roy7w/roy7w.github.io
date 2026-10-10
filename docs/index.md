@@ -2,28 +2,38 @@
 
 <div class="hero" markdown>
 
-以 **UR7e 具身 Agent** 为长期主项目：从 LLM 基础、Robot Mock 和 ROS2 / MoveIt2 控制链路开始，逐步完成受约束 Agent、Skills / MCP、安全评测与推理部署。
+以 **UR7e 具身 AI Agent** 为唯一长期主项目：先用纯 Python Robot Mock 学清 Agent 闭环，再接入 ROS 2 / MoveIt 2，逐步加入知识、记忆、工作流、Skills / MCP、安全评测与推理部署。
 
-[开始 Stage 0–9 路线](ai-agent/index.md){ .md-button .md-button--primary }
-[查看项目实践](projects/index.md){ .md-button }
+[查看 Stage 0–9 路线](ai-agent/index.md){ .md-button .md-button--primary }
+[进入项目实践](projects/index.md){ .md-button }
 
 </div>
 
-## 学习路线
+## 当前进度
 
-- **Stage 0–2：认知与控制底座**——当前在 Stage 0；随后实现 Mock，并独立打通 UR7e 控制。
-- **Stage 3–5：受约束具身 Agent**——Robot Tools、RAG、Memory、LangGraph、Backend、Skills / MCP。
-- **Stage 6：质量验收**——30–50 条真实任务场景、安全拒绝与完整执行追踪。
-- **Stage 7：高级可选 VLA**——条件允许再做模仿学习与策略部署，可直接跳过。
-- **Stage 8–9：推理优化与交付**——部署、性能对比、Demo、失败案例与求职作品集。
+当前位于 **Stage 1 · Minimal Agent + Robot Mock**。
 
-[进入路线总览 →](ai-agent/index.md)
+已经完成：
 
-## 1+1 项目组合
+- LLM API、多轮消息、system 约束；
+- 网络异常、有限重试、退避和请求日志；
+- JSON Schema 结构化输出与 Pydantic 校验；
+- Mock Robot Tools、计划执行和模块重构；
+- Action / Observation 回传与有限 Agent Loop。
 
-核心 **UR7e Embodied AI Agent** + 增强 **Embodied AI Inference Optimization**。优化项目可作为主项目性能子项目。每一步留下代码、测试或评测、trace、版本标签与复盘。
+接下来补齐循环保护和固定验收任务，再进入 Stage 2 的 ROS 2 / MoveIt 2 确定性执行层。
 
-通用 Agent 项目暂不做，后续有余力再补；Multi-Agent / Browser、通用 RAG Agent、通用 MCP Demo 和独立普通 LoRA Demo 统一放入 [Later / Optional](ai-agent/later.md)。
+[查看 Stage 1 详情 →](ai-agent/stage-01.md)
 
-!!! note "当前进度"
-    Stage 0 已完成应用形态、Agent loop、系统组件、MCP / Skills / Harness 与 token 基础五项；Transformer 其余基础继续学习。checkbox 自动保存在当前浏览器，新版保留并迁移可对应的旧进度，暂不跨设备同步。
+## 路线主轴
+
+- **Stage 0–1：认知与最小闭环**——理解 Agent 的数据流，并在 Mock 环境中证明它可控、可校验、可终止。
+- **Stage 2–3：具身执行与可靠上下文**——打通 UR7e 控制层，再接入受约束 Robot Tools、RAG 与 Memory。
+- **Stage 4–6：服务化与质量体系**——状态图、Backend、Skills / MCP、Eval、安全和可观测性。
+- **Stage 7：学习型策略（可选）**——条件允许时加入 VLA / 模仿学习，并保留经典方法回退。
+- **Stage 8–9：推理部署与交付**——比较模型服务性能，最终整理为可复现作品。
+
+这条路线不以框架数量衡量进度。每一步都要留下代码、失败用例、trace 或测试证据，以及对应的 Git checkpoint。
+
+!!! note "进度记录"
+    Checkbox 由页面自动保存在当前浏览器。路线使用稳定任务 ID，内容精简后仍尽量保留已经完成的阶段性记录。
