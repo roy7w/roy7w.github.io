@@ -107,12 +107,54 @@ window.ROADMAP_TASKS = {
     },
     {
       "id": "s01-t021",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     },
     {
       "id": "s01-t029",
+      "default": true,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s01-t030",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s01-t031",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s01-t032",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s01-t033",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s01-t034",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s01-t035",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s01-t036",
       "default": false,
       "optional": false,
       "legacy": []
@@ -166,6 +208,12 @@ window.ROADMAP_TASKS = {
       "default": false,
       "optional": false,
       "legacy": []
+    },
+    {
+      "id": "s02-t008",
+      "default": false,
+      "optional": false,
+      "legacy": []
     }
   ],
   "stage-03": [
@@ -216,6 +264,24 @@ window.ROADMAP_TASKS = {
       "default": false,
       "optional": false,
       "legacy": []
+    },
+    {
+      "id": "s03-t008",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s03-t009",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s03-t010",
+      "default": false,
+      "optional": false,
+      "legacy": []
     }
   ],
   "stage-04": [
@@ -257,6 +323,24 @@ window.ROADMAP_TASKS = {
     },
     {
       "id": "s04-t006",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s04-t007",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s04-t008",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s04-t009",
       "default": false,
       "optional": false,
       "legacy": []
@@ -345,6 +429,24 @@ window.ROADMAP_TASKS = {
     },
     {
       "id": "s06-t006",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s06-t007",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s06-t008",
+      "default": false,
+      "optional": false,
+      "legacy": []
+    },
+    {
+      "id": "s06-t009",
       "default": false,
       "optional": false,
       "legacy": []

@@ -2,7 +2,7 @@
 
 这是一条围绕同一个长期项目持续演进的学习路线：从最小 LLM 调用出发，先用纯 Python Robot Mock 看清 Agent 的数据流，再建立 ROS 2 / MoveIt 2 确定性执行层，最后加入知识、记忆、工作流、安全评测、MCP / Skills 与推理部署。
 
-当前进度：**Stage 1 · Minimal Agent + Robot Mock**。已经完成多轮消息、有限重试、结构化输出、Pydantic 校验、受约束 Tool、Observation 回传和有限 Agent Loop；下一步补齐机器人 `idle/busy` 状态、循环保护和 Stage 1 验收任务。
+当前进度：**Stage 1 · Minimal Agent + Robot Mock（最终加固）**。多轮消息、有限重试、结构化输出、Pydantic 校验、受约束 Tool、Observation 回传、有限 Agent Loop、统一结果协议和固定验收均已完成。进入 Stage 2 前将收紧独立预算、状态新鲜性、Tool 生命周期和全局 deadline，再把循环收敛进可复用模块。
 
 ## 路线原则
 
@@ -11,6 +11,7 @@
 3. LLM 只负责高层意图和 Skill 选择，不能替代运动规划、控制器或硬件安全功能。
 4. Stage 1 只用 `MockRobot`；Stage 2 才恢复 ROS 2 Fake Hardware；真机必须经过独立准入。
 5. 进度由可运行代码、trace、测试和验收结果证明，而不是由阅读数量证明。
+6. 先在当前 Stage 修复进入下一层前必须成立的边界；依赖真实 ROS、RAG 或服务化证据的设计放入对应后续 Stage，不以“未来可能需要”为由提前扩张实现。
 
 ## 全局架构
 

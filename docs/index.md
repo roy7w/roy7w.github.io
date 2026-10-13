@@ -11,7 +11,7 @@
 
 ## 当前进度
 
-当前位于 **Stage 1 · Minimal Agent + Robot Mock**。
+当前位于 **Stage 1 · Minimal Agent + Robot Mock（最终加固）**。
 
 已经完成：
 
@@ -19,9 +19,10 @@
 - 网络异常、有限重试、退避和请求日志；
 - JSON Schema 结构化输出与 Pydantic 校验；
 - Mock Robot Tools、计划执行和模块重构；
-- Action / Observation 回传与有限 Agent Loop。
+- Action / Observation 回传与有限 Agent Loop；
+- `idle/busy`、超时、重复调用保护、统一结果协议和固定真实模型验收。
 
-接下来补齐循环保护和固定验收任务，再进入 Stage 2 的 ROS 2 / MoveIt 2 确定性执行层。
+接下来在进入 Stage 2 前完成最后一轮边界加固：独立硬预算、代码化状态新鲜性、准确的 Tool 生命周期与 timeout 语义、贯穿请求和执行的全局 deadline，以及确定性回归和模块化收敛。
 
 [查看 Stage 1 详情 →](ai-agent/stage-01.md)
 

@@ -9,7 +9,7 @@
 - **Agent 学习主线**：从 `01_llm_api.py` 到 `11_bounded_agent_loop.py`，以及拆分后的模型、LLM Client、Agent、Tools 和 Mock Robot 模块。
 - **ROS 2 先期资产**：`ur7e_bringup`、Fake Hardware 启动、状态查询、joint states、controllers 和 trajectory action 验证结果。
 
-两条线暂不提前耦合。Stage 1 完成循环保护和固定验收后，Stage 2 先独立补齐确定性机器人控制；Stage 3 再通过统一 Tool 契约连接 Agent 与 ROS 2 Adapter。
+两条线暂不提前耦合。Stage 1 的循环保护和固定验收已经完成，当前只做预算、状态新鲜性、Tool 生命周期和 deadline 的最终加固；Stage 2 再独立补齐确定性机器人控制，Stage 3 通过统一 Tool Registry 和 Adapter 连接 Agent 与 ROS 2。
 
 ## 版本路线
 

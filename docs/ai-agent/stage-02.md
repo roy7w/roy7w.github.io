@@ -14,6 +14,7 @@
 - [ ] <span data-task-id="s02-t005"></span>形成与 Stage 1 Tool 契约一致的 ROS 2 机器人适配器。
 - [ ] <span data-task-id="s02-t006"></span>覆盖规划失败、控制器拒绝、通信中断和状态不一致等失败路径。
 - [ ] <span data-task-id="s02-t007"></span>完成仿真重复运行验收，并整理真机准入清单。
+- [ ] <span data-task-id="s02-t008"></span>把 ROS 2 Action 的 accepted、executing、succeeded、aborted、canceled 和 timeout 映射为统一 Tool 生命周期与错误语义，保留足够证据供后续结果协议演进。
 
 ## 产出
 
@@ -26,6 +27,7 @@
 
 - 不依赖 LLM，也能稳定重复执行 `Home → waypoint A → waypoint B → Home`。
 - 每次运动都有可追踪的目标、反馈、结果和超时，失败时不会继续盲目执行。
+- trace 能区分目标未发送、已接受、执行中和已结束，不能用“调用过 executor”替代“动作已经开始”。
 - Mock 与 ROS 2 实现遵循同一高层 Tool 契约，Agent 无需了解控制细节。
 - 文档明确区分“代码路径已验证”“仿真已验证”和“真机已验证”。
 
