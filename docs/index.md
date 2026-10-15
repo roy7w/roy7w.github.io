@@ -11,7 +11,7 @@
 
 ## 当前进度
 
-当前位于 **Stage 1 · Minimal Agent + Robot Mock（最终加固）**。
+**Stage 1 · Minimal Agent + Robot Mock 已完成并验收（2026-10-15）**，Stage 2 待开始。
 
 已经完成：
 
@@ -20,9 +20,12 @@
 - JSON Schema 结构化输出与 Pydantic 校验；
 - Mock Robot Tools、计划执行和模块重构；
 - Action / Observation 回传与有限 Agent Loop；
-- `idle/busy`、超时、重复调用保护、统一结果协议和固定真实模型验收。
+- `idle/busy`、独立硬预算、状态新鲜性、Tool 生命周期、全局 deadline、重复调用保护和统一结果协议；
+- 核心循环已提取到 `agent_loop.py`，入口、回归和验收共享实现；
+- 18 条循环回归、6 条 HTTP deadline 测试、5 组契约一致性与 6 组 Mock 初始化测试；
+- 模块化后四项真实模型验收全部通过，包含 `idle_move` 的 JSON trace 已归档。
 
-接下来在进入 Stage 2 前完成最后一轮边界加固：独立硬预算、代码化状态新鲜性、准确的 Tool 生命周期与 timeout 语义、贯穿请求和执行的全局 deadline，以及确定性回归和模块化收敛。
+下一步进入 Stage 2：复核已有 `ur7e_bringup` 与 Fake Hardware 基线，在此基础上补齐自定义控制、MoveIt 2、命名目标和 Action 生命周期。当前验收证据来自真实 LLM + 纯 Python Mock，尚未接入真实机械臂。
 
 [查看 Stage 1 详情 →](ai-agent/stage-01.md)
 

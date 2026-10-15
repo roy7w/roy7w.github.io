@@ -119,43 +119,43 @@ window.ROADMAP_TASKS = {
     },
     {
       "id": "s01-t030",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     },
     {
       "id": "s01-t031",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     },
     {
       "id": "s01-t032",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     },
     {
       "id": "s01-t033",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     },
     {
       "id": "s01-t034",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     },
     {
       "id": "s01-t035",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     },
     {
       "id": "s01-t036",
-      "default": false,
+      "default": true,
       "optional": false,
       "legacy": []
     }

@@ -6,10 +6,10 @@
 
 工作区已经具备两部分资产：
 
-- **Agent 学习主线**：从 `01_llm_api.py` 到 `11_bounded_agent_loop.py`，以及拆分后的模型、LLM Client、Agent、Tools 和 Mock Robot 模块。
+- **Agent 学习主线（Stage 1 已验收）**：保留 `01`–`23` 学习示例，`agent_loop.py` 承载可复用有限循环，`11` 为命令行入口，`16` 与 `17` 直接复用核心模块；单步调用正式名称为 `ToolCall`，`PlanStep` 为兼容别名。
 - **ROS 2 先期资产**：`ur7e_bringup`、Fake Hardware 启动、状态查询、joint states、controllers 和 trajectory action 验证结果。
 
-两条线暂不提前耦合。Stage 1 的循环保护和固定验收已经完成，当前只做预算、状态新鲜性、Tool 生命周期和 deadline 的最终加固；Stage 2 再独立补齐确定性机器人控制，Stage 3 通过统一 Tool Registry 和 Adapter 连接 Agent 与 ROS 2。
+Stage 1 已于 2026-10-15 完成边界加固、命名收敛、模块化和最终验收。18 条循环回归、6 条 HTTP deadline 场景、5 组契约一致性及 6 组 Mock 初始化测试均通过；真实模型四项固定任务全部通过，包含 `idle_move` 的 JSON trace 已归档。Stage 2 接下来独立补齐确定性机器人控制，Stage 3 通过统一 Tool Registry 和 Adapter 连接 Agent 与 ROS 2。
 
 ## 版本路线
 
